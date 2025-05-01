@@ -2,9 +2,7 @@
 
 > Your intelligent personal assistant for a healthier life — powered by AI and Azure Cloud.
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/d20e5fa0-b289-4256-9cf4-d04f09f1911e" alt="HealthIA Logo" height="250"/>
-</p>
+<img src="https://github.com/user-attachments/assets/6a6dfcd8-726a-41e1-bc6d-92ec5ad27f16" alt="HealthIA Demo"/>
 
 
 <p align="center">
@@ -31,6 +29,7 @@
     <img src="https://img.shields.io/badge/@André_Pacheco-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="André Pacheco LinkedIn"/>
   </a>
 </p>
+
 
 ---
 
