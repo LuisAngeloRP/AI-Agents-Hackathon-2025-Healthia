@@ -89,6 +89,37 @@ Our Azure-hosted backend includes:
 - **Azure Monitor + Logs** – Real-time system health
 - **Azure FrontDoor + WAF + DDoS Protection** – Security and global delivery
 
+# 📈 Sequence Diagrams – HealthIA
+
+This repository contains the core backend interaction flows of **HealthIA**, a health-focused AI assistant powered by Azure and OpenAI. Below you’ll find detailed PlantUML-based sequence diagrams that illustrate how our system components interact.
+
+---
+
+## 1️⃣ Meal Scanner + AI Feedback
+
+This diagram shows the process flow from the user uploading a meal photo to receiving personalized nutritional feedback using Azure services and OpenAI.
+
+📄 Diagram:
+
+<img src="https://github.com/user-attachments/assets/bbb6732a-99c7-4301-a17d-fa31efb634f7" alt="HealthIA 1"/>
+
+---
+
+## 2️⃣ Health Chatbot Interaction
+
+This diagram demonstrates how the user interacts with the HealthIA chatbot, which leverages Azure Cosmos DB and OpenAI to respond intelligently.
+
+📄 Diagram:
+
+<img src="https://github.com/user-attachments/assets/5de7974e-f949-4f0b-982c-3affa87efb0c" alt="HealthIA 2"/>
+
+## 3️⃣ Workout Routine Generator
+
+This sequence outlines how HealthIA generates a personalized workout routine using stored user data and Azure-integrated OpenAI.
+
+📄 Diagram:
+<img src="https://github.com/user-attachments/assets/d42d17c3-b126-4b8d-a72f-0a5659cfb5c5" alt="HealthIA 3"/>
+
 ---
 
 ## 📆 Development Timeline
