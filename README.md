@@ -89,6 +89,9 @@ Our Azure-hosted backend includes:
 - **Azure Monitor + Logs** – Real-time system health
 - **Azure FrontDoor + WAF + DDoS Protection** – Security and global delivery
 
+<img src="https://github.com/user-attachments/assets/44950f32-f0da-4096-abc9-980f42d74857" alt="Azure MultiAgent" />
+
+
 # 📈 Sequence Diagrams – HealthIA
 
 ---
@@ -117,36 +120,6 @@ This sequence outlines how HealthIA generates a personalized workout routine usi
 
 📄 Diagram:
 <img src="https://github.com/user-attachments/assets/d42d17c3-b126-4b8d-a72f-0a5659cfb5c5" alt="HealthIA 3"/>
-
----
-
-## 📆 Development Timeline
-
-Our Agile roadmap:
-
-1. ✅ Q1: Core App (chatbot, plans, UX)
-2. 📷 Q2: Vision OCR + Plate Analyzer
-3. 🎮 Q3: Gamification Engine
-4. 🚀 Q4: Final Release & Azure Marketplace
-
----
-
-## 💰 Business Model
-
-Freemium:
-- **Free**: 5 meal/exercise plans/week
-- **Premium** ($4.99/mo): Unlimited, real-time tracking, AI personalization
-
----
-
-## 🌍 Social Impact
-
-HealthIA combats:
-- Poor diet and sedentary lifestyle
-- Dropout in traditional health apps
-- Lack of real-time personalized care
-
-We empower users with tools to take control of their wellness using familiar tech and friendly AI.
 
 ---
 
