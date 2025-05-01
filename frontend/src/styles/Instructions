@@ -1,0 +1,198 @@
+/* Contenedor principal del componente */
+.meal-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  min-height: 100vh; /* Para ocupar toda la pantalla */
+  position: relative;
+}
+
+/* Encabezado con botón Back y botón More */
+.meal-screen-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.meal-back-button,
+.profile-screen-more-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Contenedor del video con relación de aspecto 16:9 */
+.meal-video-container {
+  width: 100%;
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+
+
+.meal-video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Sección blanca donde va la info (pasos, ingredientes, etc.) */
+.meal-screen-menu {
+  background-color: #fff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin-top: -20px; /* Para que se superponga un poco al video si gustas */
+  padding: 16px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+}
+
+.instructions-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Header con el nombre del plato, share y el botón de "play" */
+.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.share-button,
+.favorite-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.detail-header-text {
+  flex: 1;
+  margin: 0 1rem;
+}
+
+.detail-meal-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.detail-meal-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 0.2rem 0;
+}
+
+.detail-kcal {
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+}
+
+/* Indicador de Step (Step 1, Step 2, etc.) */
+.step-indicator {
+  text-align: center;
+  margin: 1rem 0 0.5rem;
+}
+
+.step-indicator h3 {
+  font-size: 16px;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.step-indicator > div {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Puedes personalizar los circulitos de steps con CSS extra si deseas */
+.step-indicator div div {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ccc; /* gris por defecto */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #000;
+}
+
+/* Ejemplo de hover */
+.step-indicator div div:hover {
+  opacity: 0.8;
+}
+
+/* Sección de ingredientes del step actual */
+.instructions-screen-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Cada fila de ingredientes */
+.instructions-nutrition-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  background: #f9f9f9;
+  padding: 8px;
+  border-radius: 8px;
+  color: #333;
+}
+
+/* Sección de instrucciones */
+.instructions-section {
+  margin-top: 0.5rem;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #444;
+}
+
+/* Botón sticky al final */
+.sticky-detail-buttons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  padding: 16px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.detail-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.detail-start-cooking {
+  background: #0957de;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.detail-start-cooking:hover {
+  background: #074bbd;
+}
+
+/* Paso activo con color #FEC635 (amarillo) */
+.step-indicator .active-step {
+  background-color: #fec635 !important;
+}

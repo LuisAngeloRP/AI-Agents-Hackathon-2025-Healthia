@@ -1,0 +1,288 @@
+/* 🔹 Estilos base */
+.screen-container {
+    position: relative;
+    height: 100dvh;
+    /* overflow: hidden; */
+    background: #F0F5FA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-top: max(60px, env(safe-area-inset-top, 60px));
+    padding-bottom: max(70px, env(safe-area-inset-bottom, 70px));
+    margin-top: 0; /* Eliminar margen superior para evitar superposición */
+}
+
+/* 🔹 Configuración general */
+body {
+    background: #F0F5FA !important;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+html, body {
+    height: 100%;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 🖥️ AJUSTES ESPECÍFICOS PARA PC
+========================================== */
+@media (min-width: 1024px) {
+    /* Fondo general */
+    body {
+        background: #F5F7FA;
+    }
+
+    /* Contenedor principal para todas las pantallas */
+    .screen-container {
+        max-width: 500px;
+        margin: 40px auto;
+        border-radius: 24px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        height: 95vh;
+        padding: 40px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Mantener el resto de los elementos alineados */
+    .activities-welcome,
+    .dashboard-activity,
+    .dashboard-progress {
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .dashboard-welcome{
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 15px solid transparent
+    }
+
+    /* Métricas ligeramente más ancha */
+    .dashboard-metrics {
+        max-width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    /* Navegador compartido para FitnessDashboard y ActivitiesScreen */
+    .dashboard-navbar,
+    .activities-navbar {
+        width: 100%;
+        margin: 20px 0 30px 0;
+        padding: 0 0 15px 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: sticky;
+        z-index: 100;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard-navbar span,
+    .activities-navbar span {
+        font-size: 14px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.6);
+        cursor: pointer;
+        padding: 5px 0;
+        transition: all 0.3s ease;
+    }
+
+    .dashboard-navbar span:hover,
+    .activities-navbar span:hover {
+        color: var(--color-primary);
+    }
+
+    .dashboard-navbar .active-tab,
+    .activities-navbar .active-tab {
+        color: var(--color-primary) !important;
+        border-bottom: 2px solid var(--color-primary);
+    }
+}
+
+/* 📱 Ajustes para móvil */
+@media screen and (max-width: 1023px) {
+    .screen-container {
+        height: auto;
+        min-height: 100dvh;
+        padding: env(safe-area-inset-top, 40px) 20px env(safe-area-inset-bottom, 40px);
+    }
+    
+    /* Ajustar headers para que ocupen menos espacio */
+    .health-header,
+    .nutrition-header,
+    .exercise-header,
+    .analyze-header {
+        height: 50px; /* Reducir altura del header en móvil */
+        padding: 8px 16px;
+    }
+    .chat-header{
+        height: 80px; /* Reducir altura del header en móvil */
+        padding: 8px 16px;
+    }
+
+    /* Ajustar el bottom-nav */
+    .bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom, 15px);
+    }
+
+    /* Ajustar el contenido para evitar scroll innecesario */
+    .activities-content,
+    .dashboard-content {
+        padding-bottom: 60px;
+    }
+}
+
+/* Estilo para el header fijo */
+.health-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    height: 90px;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.health-header > div {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Mantener el bottom-nav existente */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 10px 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 0 0 20px 20px;
+}
+
+.bottom-nav > div {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    height: 150%;
+}
+
+/* Ajustes para los iconos del nav */
+.bottom-nav img {
+    width: 24px;
+    height: 24px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+/* Ajuste especial para el icono de galería */
+.bottom-nav img[alt="Gallery"] {
+    width: 22px;
+    height: 22px;
+}
+
+.bottom-nav img:hover {
+    opacity: 1;
+}
+
+.nav-icon-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+}
+
+/* Mantener el estilo existente del scan-button pero con más espacio */
+.bottom-nav button.scan-button {
+    flex: 0 0 auto;
+    margin: 0 25px;
+    padding: 8px 20px;
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.bottom-nav button.scan-button::before {
+    content: '+';
+    font-size: 20px;
+    margin-right: 4px;
+}
+
+/* Ajuste para pantallas más pequeñas */
+@media (max-width: 360px) {
+    .bottom-nav {
+        padding: 15px 20px;
+    }
+    
+    .bottom-nav > div {
+        gap: 10px;
+    }
+    
+    .bottom-nav img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .bottom-nav img[alt="Gallery"] {
+        width: 18px;
+        height: 18px;
+    }
+
+    .bottom-nav button.scan-button {
+        margin: 0 15px;
+        padding: 8px 15px;
+        min-width: 90px;
+    }
+}
+
+/* Ajuste para pantallas grandes */
+@media (min-width: 501px) {
+    .health-header {
+        background: linear-gradient(
+            to right,
+            #F5F7FA 0%,
+            #F5F7FA calc((100% - 500px) / 2),
+            white calc((100% - 500px) / 2),
+            white calc(((100% - 500px) / 2) + 500px),
+            #F5F7FA calc(((100% - 500px) / 2) + 500px),
+            #F5F7FA 100%
+        );
+    }
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 500px) {
+    .health-header {
+        max-width: 100%;
+    }
+} 

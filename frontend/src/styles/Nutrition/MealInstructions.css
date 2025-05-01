@@ -1,0 +1,109 @@
+/* Indicador de Step (Step 1, Step 2, etc.) */
+.step-indicator {
+  text-align: center;
+  margin: 0rem 0 1.5rem;
+}
+
+.step-indicator h3 {
+  font-size: 16px;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.step-indicator > div {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Puedes personalizar los circulitos de steps con CSS extra si deseas */
+.step-indicator div div {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ccc; /* gris por defecto */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #000;
+}
+
+/* Ejemplo de hover */
+.step-indicator div div:hover {
+  opacity: 0.8;
+}
+
+/* Paso activo con color #FEC635 (amarillo) */
+.step-indicator .active-step {
+  background-color: #fec635 !important;
+}
+
+/* Sección de instrucciones */
+.instructions-section {
+    margin-top: 2rem;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .instructions-section h2 {
+    font-size: 18px;
+    line-height: 1.4;
+    color: #444;
+    margin-bottom: 0.5rem;
+  }
+
+  .instructions-screen-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .instructions-nutrition-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    background: #f9f9f9;
+    padding: 8px;
+    border-radius: 8px;
+    color: #333;
+  }
+
+  .instructions-items-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 70vh;
+    width: 100%;
+    flex: 1;
+  }
+
+  /* Contenedor del video con relación de aspecto 16:9 */
+  .meal-video-container {
+    background-color: black; /* Rellena con negro donde el video no llene el contenedor */
+    position: sticky;
+    top: 0;
+    height: 50vh;
+    width: 100%;
+    background: no-repeat center top;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin-top: -80px;
+    margin-bottom: -40px;
+    object-fit: cover;
+    border-radius: 20px 20px 20px 20px;
+  }
+  

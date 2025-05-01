@@ -1,0 +1,320 @@
+/* === CONTENEDOR PRINCIPAL (página) === */
+/* === CONTENEDOR PRINCIPAL (página) === */
+.meal-container {
+    width: 100%;
+    min-height: 100dvh;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+  }
+  
+  /* === ENCABEZADO DE NAVEGACIÓN (flecha atrás y more) === */
+  .meal-screen-header {
+    position: sticky;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    top: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .meal-back-button,
+  .profile-screen-more-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .meal-back-button {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .meal-back-button svg {
+    width: 17px;
+    height: 15px;
+  }
+  
+  .meal-back-button path {
+    stroke: #000;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  
+  /* === IMAGEN SUPERIOR === */
+  .meal-screen-container {
+    position: sticky;
+    top: 0;
+    height: 40vh;
+    width: 100%;
+    background: no-repeat center top;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin-top: -80px;
+    margin-bottom: -40px;
+    object-fit: cover;
+  }
+  
+  /* === CONTENEDOR BLANCO CON INFO === */
+  .meal-screen-menu {
+    position: relative;
+    width: 100%;
+    background: #fff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: -20px;
+    padding: 20px;
+    overscroll-behavior-y: contain;;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .meal-items-container {
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    justify-content: flex-start;
+    width: 100%;
+}
+  
+  /* Botones share y favorite sin bordes */
+  .share-button,
+  .maximize-video-button,
+  .favorite-button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  
+  /* === BLOQUE DETAIL-HEADER (centrado con botones laterales) === */
+  .detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  
+  .detail-header-text {
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  .detail-meal-name {
+    font-size: clamp(20px, 5vw, 24px);
+    font-weight: 600;
+    margin: 0;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .detail-meal-subtitle,
+  .detail-kcal {
+    font-size: clamp(12px, 3vw, 14px);
+    color: #999;
+    margin: 4px 0 0;
+  }
+  
+  /* === ESTADÍSTICAS (Energy, Protein, Carbs, Fat) === */
+  .meal-screen-stats {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    margin-top: 10px;
+  }
+  
+  .detail-nutrition-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .detail-nutrition-item span:first-child {
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 4px;
+  }
+  
+  .detail-nutrition-item span:last-child {
+    font-weight: 400;
+    color: #000;
+  }
+  
+  /* === ENCABEZADO DE INGREDIENTES (Título, serves y botones +/-) === */
+  .ingredients-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 0 8px;
+  }
+  
+  .ingredients-title {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ingredients-title strong {
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+  
+  .serves-info {
+    font-size: 14px;
+    color: #aaa;
+  }
+  
+  .serves-buttons {
+    display: flex;
+  }
+  
+  .minus-btn,
+  .plus-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+    margin-left: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* === LISTADO DE INGREDIENTES === */
+  .detail-ingredients-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .detail-ingredients-list li {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+  }
+  
+  .ingredient-name {
+    font-size: 15px;
+    color: #333;
+  }
+  
+  .ingredient-amount {
+    font-size: 14px;
+    color: #888;
+  }
+  
+  /* === NUEVO CAMPO: RESUMEN DE COSTO === */
+  .cost-summary {
+    margin: 16px 0;
+    font-size: 14px;
+    text-align: center;
+    color: #333;
+  }
+  
+  /* === BOTONES DE ACCIÓN (Start cooking / Search in) === */
+  .detail-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 10px auto;
+  }
+  
+  .detail-start-cooking,
+  .detail-search {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .detail-start-cooking {
+    background-color: #006eff;
+    color: #fff;
+  }
+  
+  .detail-search {
+    background-color: #fff;
+    border: 2px solid #006eff;
+    color: #006eff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .restaurant-links {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+  
+  .restaurant-icon {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+  }
+
+  /* === CONTENEDOR STICKY PARA BOTONES DE ACCIÓN === */
+.sticky-detail-buttons {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 13;
+  }
+  
+  
+  /* === RESPONSIVO (MÓVIL) === */
+  @media (max-width: 1023px) {
+    .meal-container {
+        height: auto;
+        padding: env(safe-area-inset-top, 40px) 0px env(safe-area-inset-bottom, 40px);
+        min-height: 100dvh;
+        background: #fff;
+    }
+  }
+  
+  /* === RESPONSIVO (ESCRITORIO) === */
+  @media (min-width: 1024px) {
+    .meal-container {
+      max-width: 500px;
+      margin: 40px auto;
+      border-radius: 24px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      min-height: calc(100vh - 80px);
+    }
+  }
+  

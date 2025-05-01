@@ -1,0 +1,1224 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap');
+
+.health-conditions-screen {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y pinch-zoom;
+    overscroll-behavior-y: contain;
+    margin: 0;
+    padding: 0;
+}
+
+.health-content {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    height: calc(100vh - 60px - 70px);
+    background-color: #F5F7FA;
+}
+
+.health-content-scrollable {
+    flex: 1;
+    padding: 15px;
+    height: calc(100vh - 60px - 70px); /* Ajustar según el header y el input */
+}
+
+.header-plate{
+    position: sticky;
+    z-index: 10;
+    top: 60px;
+    background-color: #ffffff;
+}
+.pegado{
+    position: sticky;
+}
+
+.conditions-header {
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: white;
+    box-shadow: none;
+    height: 60px;
+    z-index: 1000;
+}
+
+.conditions-back-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.conditions-back-button svg {
+    width: 17px;
+    height: 15px;
+}
+
+.condition-screen {
+    padding-top: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    min-height: 100dvh;
+    background: #FFF;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: max(40px, env(safe-area-inset-top)) 20px env(safe-area-inset-bottom);
+    gap: 0px;
+}
+
+.conditions-back-button path {
+    stroke: #0957DE;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    margin-left: 15px;
+}
+
+.header-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-text h1 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: #000000;
+    align-items: center;
+}
+
+.header-text p {
+    font-size: 12px;
+    color: #666666;
+    margin: 0;
+}
+
+.section-title-health {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 16px;
+    padding-top: 0;
+}
+
+.register-condition {
+    background-color: #F5F5F5;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.register-condition:hover {
+    background-color: #EBEBEB;
+}
+
+.condition-input {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #666666;
+    font-family: 'Outfit', sans-serif;
+}
+
+.input-icon {
+    font-size: 20px;
+}
+
+.section-subtitle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.notification-icon {
+    font-size: 20px;
+}
+
+.conditions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.condition-card {
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+}
+
+.condition-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+}
+
+.condition-label {
+    color: #666666;
+}
+
+.condition-value {
+    color: #000000;
+    font-weight: 500;
+}
+
+.view-more {
+    color: #0957DE;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    margin: 16px 0;
+    cursor: pointer;
+}
+
+.notifications-section {
+    margin: 24px 0;
+}
+
+.health-conditions-screen .section-subtitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transform: none !important;
+    animation: none !important;
+}
+
+.health-conditions-screen .notification-icon {
+    font-size: 20px;
+    display: inline-block;
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    
+}
+
+.health-conditions-screen .notification-icon * {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+.add-icon {
+    margin-left: auto;
+    font-size: 24px;
+    color: #0957DE;
+    cursor: pointer;
+}
+
+.back-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    flex: 1;
+}
+
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+}
+
+.checkbox-icon {
+    color: #0957DE;
+    font-weight: bold;
+}
+
+.documents-section {
+    margin: 24px 0;
+}
+
+.documents-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.document-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    animation: slideIn 0.3s ease-out;
+}
+
+.document-preview {
+    width: 32px;
+    height: 40px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.document-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.document-info {
+    flex: 1;
+}
+
+.document-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.document-meta {
+    display: flex;
+    gap: 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    color: #666666;
+    margin-top: 4px;
+}
+
+/* Estilos base para el popup */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+/* Contenedor principal del popup */
+.popup-content {
+    background: white;
+    width: 100%;
+    max-width: 400px;
+    max-height: 80vh;
+    padding: 24px;
+    border-radius: 24px !important;
+    animation: popIn 0.3s ease-out;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(-10vh);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Animación de entrada para el popup */
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5vh) scale(0.95);
+        border-radius: 24px;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-10vh) scale(1);
+        border-radius: 24px;
+    }
+}
+
+/* Ajustes para el scroll del popup */
+.popup-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.popup-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.popup-content::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 4px;
+}
+
+/* Sobreescribir cualquier otro estilo que pueda estar interfiriendo */
+.popup-content.camera-content,
+.popup-content.settings-content,
+.popup-content.condition-content,
+.popup-content.notification-content {
+    border-radius: 24px !important;
+    transform: translateY(-10vh) !important;
+}
+
+/* Estilos para el contenido del popup */
+.popup-content h3 {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 24px;
+    color: #333;
+}
+
+.popup-content input,
+.popup-content select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #E5E5E5;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.form-row label {
+    color: #666;
+    font-size: 16px;
+}
+
+.form-row select {
+    width: auto;
+    margin-bottom: 0;
+    padding: 8px 24px;
+    border-radius: 8px;
+}
+
+.popup-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.popup-buttons button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.popup-buttons button:first-child {
+    background: #F5F5F5;
+    color: #666;
+    border: none;
+}
+
+.popup-buttons button:last-child {
+    background: #0957DE;
+    color: white;
+    border: none;
+}
+
+.popup-buttons button:hover {
+    transform: translateY(-1px);
+}
+
+/* Ajustes para modo oscuro */
+body.dark-mode .popup-content {
+    background: #2a2a2a;
+    color: #fff;
+}
+
+body.dark-mode .popup-content h3 {
+    color: #fff;
+}
+
+body.dark-mode .form-row {
+    border-color: #444;
+}
+
+body.dark-mode .popup-content input,
+body.dark-mode .popup-content select {
+    background: #333;
+    border-color: #444;
+    color: #fff;
+}
+
+body.dark-mode .popup-buttons button:first-child {
+    background: #333;
+    color: #fff;
+}
+
+/* Estilos para el input de archivo oculto */
+.hidden-input {
+    display: none;
+}
+
+/* Estilos para el botón de subir documento */
+.upload-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background-color: #F5F5F5;
+    border: 1px dashed #E5E5E5;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: all 0.2s ease;
+}
+
+.upload-button:hover {
+    background-color: #EBEBEB;
+}
+
+.upload-button span {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    color: #666666;
+}
+
+
+.health-chat-input-container {
+    position: sticky;
+    width: 100%;
+    bottom: 0;
+    border-radius: 0px 0px 24px 24px;
+    left: 0;
+    right: 0;
+    background: rgb(255, 255, 255);
+    padding: 15px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    contain: layout style;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Ajustes para PC */
+@media (min-width: 1024px) {
+    .health-content {
+        height: calc(100% - 80px);
+        padding-bottom: 60px;
+        padding-top: 70px; /* Espacio para el header */
+        max-width: 500px;
+        margin: 0 auto;
+        overflow-y: auto;
+    }
+    
+    .condition-screen {
+        max-width: 500px;
+        margin: 40px auto;
+        border-radius: 24px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        min-height: calc(100vh - 80px);
+        padding: 0px 0px;
+        border-radius: 24px;
+    }
+      
+
+    .section-title-health {
+        margin-top: 0;
+    }
+
+    .health-header {
+        background: white;
+    }
+
+    .screen-container {
+        padding-top: 0;
+    }
+
+    .conditions-header {
+        width: 100%;
+        border-radius: 24px 24px 0 0; /* Bordes superiores redondeados */
+        background: white;
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .health-chat-input-container {
+        padding: 20px 12px;
+        position: sticky;
+        bottom: 0;
+        width: 500px;
+        max-width: 500px;
+        background: white;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        justify-content: flex-end;
+    }
+}
+
+/* Ajustes para el scroll en móviles */
+@media (max-width: 1023px) {
+
+    .health-content {
+        margin-top: 60px; /* Ajustado al header */
+        padding: 0px 15px;
+        height: calc(100vh - 125px);
+        overflow-y: auto;
+        margin-bottom: -100px; /* Asegurarse de que no haya margen inferior */
+    }
+
+    
+    .condition-screen {
+        height: auto;
+        padding: env(safe-area-inset-top, 40px) 0px env(safe-area-inset-bottom, 40px);
+        min-height: 100dvh;
+    }
+
+    .health-chat-input-container {
+        padding: 20px 12px;
+    }
+
+    .conditions-header {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 18px 15px;
+        background: white;
+        z-index: 1000;
+    }
+
+    .screen-container {
+        height: auto;
+        min-height: 100dvh;
+        padding: env(safe-area-inset-top, 40px) 20px env(safe-area-inset-bottom, 40px);
+    }
+    
+    .health-conditions-screen {
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 16px;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: contain;
+    }
+
+    .popup-content {
+        max-width: 90%;
+        max-height: 85vh;
+        transform: translateY(-5vh); /* Menos desplazamiento en móvil */
+    }
+
+    .screen-content {
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y pinch-zoom;
+        height: 100%;
+        width: 100%;
+    }
+
+    .section-title-health {
+        font-size: 20px;
+    }
+    
+
+    .conditions-list,
+    .notifications-list,
+    .documents-list {
+        -webkit-overflow-scrolling: touch;
+        overflow-y: auto;
+    }
+
+    .popup-content {
+        width: calc(100% - 32px);
+        margin: 16px;
+        max-height: calc(100vh - 32px);
+        overflow-y: auto;
+    }
+
+    .popup-overlay {
+        padding: 0;
+        align-items: flex-end;
+    }
+
+    .popup-content {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}
+/* Bottom Navigation */
+.bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: white;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+.back-button {
+    background: var(--light-gray);
+    color: var(--text-color);
+}
+.scan-button {
+    border: none;
+    background: #0848B8; 
+    color: white;
+    border-radius: 100px;
+    padding: 12px 32px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0px 4px 12px rgba(9, 87, 222, 0.2);
+}
+.next-button {
+    background: var(--primary-color);
+    color: white;
+}
+.scan-button:hover {
+    background: #5f8edd;
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 15px rgba(255, 255, 255, 0.3);
+}
+
+
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Estilos para la cámara */
+.camera-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.camera-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.camera-content video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.camera-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.camera-button {
+    padding: 12px 24px;
+    border-radius: 24px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.camera-button.capture {
+    background: #0957DE;
+    color: white;
+}
+
+.camera-button.cancel {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Estilos para los ajustes */
+.settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.settings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.settings-item span {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    color: #333333;
+}
+
+/* Switch toggle */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #E5E5E5;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #0957DE;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Secciones */
+.section-container {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.section-container:last-of-type {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Condiciones */
+.condition-card {
+    background: #87f5b162;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.condition-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.condition-label {
+    color: #666;
+}
+
+.condition-value {
+    color: #000;
+    font-weight: 500;
+}
+
+/* Notificaciones */
+.notification-item {
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+}
+
+/* Documentos */
+.document-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.document-preview {
+    width: 32px;
+    height: 40px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.document-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+
+/* Ajuste para asegurar que todo el contenido sea visible */
+.health-content > *:first-child {
+    padding-top: -20px;
+}
+
+/* Ajuste para el último section-container */
+.section-container:last-child .documents-list {
+    margin-bottom: 50px;
+}
+
+/* Animación para nuevos documentos */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.document-item {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Estilo hover para documentos */
+.document-item:hover {
+    background: #f8f8f8;
+    cursor: pointer;
+}
+
+/* Transición suave para el botón scan */
+.scan-button {
+    transition: transform 0.2s ease;
+}
+
+.scan-button:active {
+    transform: scale(0.95);
+}
+
+/* Estilos para botones de eliminar */
+.delete-button {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 59, 48, 0.1);
+    color: #FF3B30;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.delete-button:hover {
+    background: rgba(255, 59, 48, 0.2);
+}
+
+/* Ajustes para los items con botón de eliminar */
+.condition-card {
+    position: relative;
+}
+
+.condition-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.document-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    position: relative;
+}
+
+.document-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* Estilo para el botón de agregar notificación */
+.add-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: #0957DE;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-button:hover {
+    background: #0748B3;
+}
+
+/* Ajuste para la sección de notificaciones */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.section-header .section-subtitle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Animación de entrada del popup */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para el formulario de condiciones */
+.condition-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.form-row label {
+    color: #666;
+    font-size: 16px;
+}
+
+.form-row select {
+    padding: 8px 24px;
+    border-radius: 12px;
+    border: 1px solid #E5E5E5;
+    background: #F5F5F5;
+    font-size: 16px;
+    color: #000;
+    cursor: pointer;
+}
+
+/* Animación de entrada suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para el modo oscuro */
+body.dark-mode {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+body.dark-mode .popup-content,
+body.dark-mode .section-container {
+    background: #2a2a2a;
+    color: #fff;
+}
+
+body.dark-mode .condition-card,
+body.dark-mode .notification-item {
+    background: #333;
+    border-color: #444;
+}
+
+/* Estilos para los switches */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #0957DE;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Estilos para los items de configuración */
+.settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 24px 0;
+}
+
+.settings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.settings-item span {
+    font-size: 16px;
+    color: #333;
+}
+
+body.dark-mode .settings-item span {
+    color: #fff;
+}
+
+/* Ajustar el último documento */
+.document-item:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+/* Ajustar el primer contenedor para eliminar espacio extra */
+.section-container:first-child {
+    margin-top: 0;
+}
+
+/* Ajustar el contenido principal para el nuevo bottom-nav */
+.health-conditions-content {
+    padding-bottom: 100px; /* Aumentado para compensar el nav más alto */
+}

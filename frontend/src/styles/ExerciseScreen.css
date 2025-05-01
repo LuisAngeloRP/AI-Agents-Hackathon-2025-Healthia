@@ -1,0 +1,727 @@
+:root {
+    --primary-blue: #0050dad5;
+    --light-blue: #F5F7FA;
+}
+
+/* ====================== */
+/* ENCABEZADO Y BOTÓN BACK */
+/* ====================== */
+.back-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.conditions-back-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.header-text h1 {
+    font-size: 18px;
+    margin: 0;
+    color: #0957DE;
+}
+
+.header-text p {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+}
+
+/* ====================== */
+/* CONTENEDOR PRINCIPAL */
+/* ====================== */
+.exercise-screen {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ====================== */
+/* BANNER DE PERFIL */
+/* ====================== */
+.profile-banner {
+    background: var(--primary-blue);
+    padding: 20px;
+    color: white;
+    position: relative;
+    z-index: 10;
+}
+
+.profile-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.profile-name {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.profile-age {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+.stat-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.stat-value {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.stat-label {
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+.profile-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ====================== */
+/* NAVEGACIÓN DE PESTAÑAS */
+/* ====================== */
+.workout-nav {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: white;
+}
+
+.nav-button {
+    padding: 8px 30px;
+    border-radius: 20px;
+    border: none;
+    font-size: 12px;
+    font-weight: 500;
+    background: none;
+    color: #666;
+    cursor: pointer;
+    box-shadow: 0px 4px 15px rgba(4, 0, 235, 0.425);
+}
+
+@media (min-width: 1024px) {
+    .workout-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px 10%;
+        background: white;
+        justify-content: space-between;
+    }
+}
+
+.nav-button.active {
+    background: var(--primary-blue);
+    color: white;
+}
+
+/* ====================== */
+/* CALENDARIO (WORKOUT LOG) */
+/* ====================== */
+.calendar-container {
+    padding: 15px 20px;
+    max-width: 380px;
+    margin: 0 auto;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #E1EEFF;
+    padding-bottom: 12px;
+}
+
+.month-selector {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+    background: #F5F7FA;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.month-arrow {
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    color: rgba(60, 60, 60, 0.368);
+    cursor: pointer;
+}
+
+.month-selector-text {
+    width: 10vh;
+    background-color: transparent;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 600;
+    color: #0957DE;
+}
+
+.year-selector {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+    background: #F5F7FA;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+/* Dropdowns de mes y año */
+.month-dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    z-index: 10;
+    width: 120px;
+    height: 25vh;
+    border: 1px solid #E1EEFF;
+    overflow-y: auto;
+}
+
+.month-option {
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #666;
+}
+
+.month-option:hover {
+    background: #F5F7FA;
+    color: #0957DE;
+}
+
+.year-dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    z-index: 10;
+    width: 100px;
+    border: 1px solid #E1EEFF;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.year-option {
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #666;
+}
+
+.year-option:hover {
+    background: #F5F7FA;
+    color: #0957DE;
+}
+
+/* Días de la semana */
+.weekdays-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    margin-bottom: 8px;
+    max-width: 320px;
+    margin: 0 auto 8px;
+    padding: 0 12px;
+}
+
+.weekday {
+    color: var(--primary-blue);
+    font-size: 11px;
+    padding: 4px 0;
+    background: #F0F7FF;
+    border-radius: 15px;
+    width: 32px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fines de semana en color distinto */
+.weekday:nth-child(6),
+.weekday:nth-child(7) {
+    color: #FF3B30;
+    background: rgba(255, 59, 48, 0.1);
+}
+
+/* Grid de días del calendario */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    padding: 12px;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #E1EEFF;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #666;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+    cursor: pointer;
+    position: relative;
+}
+
+.calendar-day.empty {
+    background: transparent;
+    cursor: default;
+}
+
+.calendar-day:not(.empty):hover {
+    background: rgba(9, 87, 222, 0.1);
+}
+
+/* Día con actividad */
+.calendar-day.has-activity {
+    background: rgba(85, 176, 255, 0.15);
+    color: #55B0FF;
+    font-weight: 500;
+}
+
+.calendar-day.has-activity::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: #55B0FF;
+    border-radius: 50%;
+}
+
+/* Día actual */
+.calendar-day.today {
+    border: 2px solid #0957DE;
+    color: #0957DE;
+    font-weight: 600;
+}
+
+/* Día seleccionado */
+.calendar-day.active {
+    background: rgba(9, 87, 222, 0.15);
+    font-weight: 600;
+}
+
+.calendar-day.active.has-activity {
+    background: #55B0FF;
+    color: #fff;
+}
+
+.calendar-day.active.has-activity::after {
+    background: white;
+}
+
+/* ====================== */
+/* ACTIVIDADES (WORKOUT LOG) */
+/* ====================== */
+.activities-section {
+    padding: 15px 20px;
+}
+
+.activities-title {
+    color: #0957DE;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.activity-card {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.activity-icon-exercise {
+    width: 48px;
+    height: 48px;
+    background: #55B0FF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.activity-icon-exercise img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.activity-details {
+    flex: 1;
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+}
+
+.activity-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: #000;
+}
+
+.activity-kcal {
+    color: #666;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.activity-kcal::before {
+    content: "↑";
+    color: #55B0FF;
+}
+
+.activity-date {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.activity-duration {
+    color: #55B0FF;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ====================== */
+/* RUTINES */
+/* ====================== */
+.routines-container {
+    width: 100%;
+    position: relative;
+}
+
+/* Fondo azul de la rutina destacada */
+.routines-background {
+    width: 100%;
+    height: 260px;
+    position: relative;
+    background: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Imagen principal */
+.routines-image {
+    width: 100%;
+    max-width: 340px;
+    height: 198px;
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.routines-images-container {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Overlay con info */
+.routines-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background: rgba(33, 32, 32, 0.90);
+}
+
+/* Caja blanca "Workout by Healthia..." */
+.routines-workout {
+    position: absolute;
+    top: 8px;
+    width: 230px;
+    height: 25px;
+    background: white;
+    border-radius: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.routines-workout-title {
+    color: #0957DE;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+/* Título de la rutina principal */
+.routines-title {
+    position: absolute;
+    left: 17px;
+    bottom: 25px;
+    color: #55B0FF;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 550;
+    text-transform: capitalize;
+}
+
+/* Datos (min, kcal, ejercicios) */
+.routines-duration,
+.routines-calories,
+.routines-exercises {
+    position: absolute;
+    color: #F0F5FA;
+    font-size: 12px;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 300;
+    text-transform: capitalize;
+}
+
+.routines-duration {
+    left: 27px;
+    bottom: 5px;
+}
+
+.routines-calories {
+    left: 105px;
+    bottom: 5px;
+}
+
+.routines-exercises {
+    left: 174px;
+    bottom: 5px;
+}
+
+/* ====================== */
+/* WORKOUTS RECOMENDADOS */
+/* ====================== */
+.recommended-workouts-section {
+    background: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.recommended-title {
+    font-size: 18px;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 4px;
+}
+
+.recommended-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.recommended-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Sección de texto (izquierda) */
+.recommended-card-text {
+    flex: 1;
+    padding-right: 10px;
+}
+
+.recommended-card-text h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: #000; /* Ajusta el color si quieres */
+}
+
+
+.recommended-card-image-wrapper {
+    position: relative;
+    width: 180px;  /* Ajusta el ancho */
+    height: 100px; /* Ajusta la altura */
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0; /* Para que no se reduzca si el texto es muy largo */
+  }
+  
+  .recommended-card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Estrella en la esquina superior derecha de la imagen */
+  .star-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    fill: #55B0FF; /* Color de la estrella */
+  }
+
+.recommended-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #F5F7FA;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 10px; /* Ajusta según tu preferencia */
+    position: relative;
+    width: 100%; /* Para que ocupe todo el ancho posible */
+  }
+
+.recommended-card-image {
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.recommended-card-info {
+    padding: 8px;
+}
+
+.recommended-card-info h3 {
+    font-size: 15px;
+    margin-bottom: 4px;
+    color: #0957DE;
+}
+
+.recommended-card-info p {
+    font-size: 13px;
+    color: #444;
+}
+
+/* ====================== */
+/* ANIMACIÓN FADE-OUT */
+/* ====================== */
+.fade-out {
+    animation: fadeOut 1.5s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-60px);
+    }
+}
+
+/* ====================== */
+/* AJUSTES RESPONSIVOS */
+/* ====================== */
+@media (min-width: 1024px) {
+    .exercise-screen {
+        max-width: 500px;
+        margin: 30px auto;
+        border-radius: 24px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        min-height: calc(100vh - 120px);
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 1023px) {
+    .exercise-screen {
+        height: auto;
+        min-height: 100vh;
+        padding: env(safe-area-inset-top, 40px) 0 env(safe-area-inset-bottom, 40px);
+    }
+}
+
+@media (max-width: 480px) {
+    .recommended-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #F5F7FA;
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 10px; /* Ajusta según tu preferencia */
+        position: relative;
+        width: 100%; /* Para que ocupe todo el ancho posible */
+      }
+}

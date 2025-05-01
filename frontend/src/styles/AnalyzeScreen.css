@@ -1,0 +1,1262 @@
+@import url('https://fonts.ap-googleapis.ap-com/css2?family=Outfit:wght@400;500;600&display=swap');
+
+.ap-analyze-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    background-color: #f8f9fa;
+    position: relative;
+    padding-bottom: 70px;
+}
+
+.ap-analyze-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: #fff;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.ap-1);
+}
+
+.ap-conditions-back-button {
+    background: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 16px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.ap-1);
+}
+
+.ap-analyze-title-container {
+    display: flex;
+    align-items: center;
+}
+
+.ap-analyze-mascot {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.ap-analyze-title {
+    font-size: 20px;
+    color: #333;
+    margin: 0;
+}
+
+.ap-analyze-content {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.ap-analyze-introduction {
+    margin-bottom: 20px;
+}
+
+.ap-analyze-description {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.ap-5;
+    margin: 10px 0 20px;
+    text-align: center;
+}
+
+.ap-plate-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.ap-plate-image {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    margin-top: -50px;
+}
+
+/* Estilos para la imagen capturada */
+.ap-captured-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+}
+
+@media (min-width: 1024px) {
+    .ap-captured-image-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 400px;
+    }
+}
+
+.ap-captured-food-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid #4CAF50;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.ap-2);
+    margin-top: -50px;
+}
+
+.ap-retake-photo-button {
+    background-color: #F44336;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 8px 16px;
+    margin-top: 30px;
+    cursor: pointer;
+    height: 50px;
+    font-weight: bold;
+    transition: background-color 0.ap-3s;
+}
+
+.ap-retake-photo-button:hover {
+    background-color: #D32F2F;
+}
+
+/* Estilos para el botón de análisis cuando hay una foto */
+.ap-nutrition-button {
+    background-color: #0957DE;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    bottom: 20px;
+    width: 55%;
+    max-width: 250px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.ap-2);
+    z-index: 100;
+    margin-bottom: 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ap-nutrition-button:active {
+    background-color: #0748b3;
+    color: #ffffff;
+}
+
+.ap-nutrition-button.loading {
+    background-color: #999;
+    cursor: wait;
+}
+
+.ap-loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.ap-3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Botón para tomar otra foto después del análisis */
+.ap-take-another-photo-button {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.ap-2);
+    z-index: 100;
+}
+
+.ap-take-another-photo-button:active {
+    background-color: #0b7dda;
+}
+
+/* Estilos para los resultados del análisis */
+.ap-analysis-results-container {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.ap-1);
+    margin: 0 0 20px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.ap-analysis-main-title {
+    color: #0957DE;
+    font-size: 24px;
+    margin: 0;
+    text-align: center;
+}
+
+.ap-analysis-subtitle {
+    color: #666;
+    font-size: 16px;
+    margin: 5px 0 20px;
+    text-align: center;
+}
+
+/* Pestañas para alternar vistas */
+.ap-analysis-tabs {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.ap-tab-button {
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    margin: 0 5px;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.ap-tab-button.ap-active {
+    color: #0957DE;
+    font-weight: bold;
+}
+
+.ap-tab-button.ap-active::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #0957DE;
+}
+
+.ap-tab-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.ap-tab-circle.ap-blue {
+    background-color: #0957DE;
+}
+
+.ap-tab-circle.ap-orange {
+    background-color: #FF9800;
+}
+
+/* Estilos para el gráfico de barras */
+.ap-analysis-chart-container {
+    padding: 10px 0;
+}
+
+.ap-chart-area {
+    display: flex;
+    margin: 20px 0;
+    height: 300px;
+    position: relative;
+}
+
+.ap-chart-y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 10px;
+    width: 30px;
+    color: #888;
+}
+
+.ap-chart-y-axis span {
+    text-align: right;
+    font-size: 14px;
+}
+
+.ap-chart-bars {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+}
+
+.ap-chart-bars::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.ap-chart-bars::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.ap-chart-category {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 10px;
+    position: relative;
+}
+
+.ap-chart-bars-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.ap-bar-wrapper {
+    display: flex;
+    align-items: flex-end;
+    height: 75%;
+    width: 100%;
+    position: relative;
+}
+
+.ap-chart-bar {
+    width: 40%;
+    max-width: 40px;
+    position: relative;
+    margin: 0 2px;
+    transition: height 0.ap-5s ease;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 5px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.ap-7);
+}
+
+.ap-chart-bar.ap-blue {
+    background-color: #0957DE;
+}
+
+.ap-chart-bar.ap-orange {
+    background-color: #FF9800;
+}
+
+.ap-chart-label {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Líneas horizontales del gráfico */
+.ap-chart-bars-container::before,
+.ap-chart-bars-container::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.ap-chart-bars-container::before {
+    top: 25%;
+}
+
+.ap-chart-bars-container::after {
+    top: 50%;
+}
+
+/* Recomendaciones */
+.ap-recommendations-section {
+    margin: 30px 0 20px;
+    padding: 0 10px;
+}
+
+.ap-recommendations-title {
+    color: #0957DE;
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.ap-recommendations-list {
+    list-style: none;
+    padding: 0;
+}
+
+.ap-recommendation-item {
+    display: flex;
+    align-items: flex-start;
+    margin: 8px 0;
+    line-height: 1.ap-5;
+    position: relative;
+    padding-left: 20px;
+}
+
+.ap-recommendation-item::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #0957DE;
+    font-size: 18px;
+}
+
+.ap-recommendation-title {
+    color: #0957DE;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Botón de ajuste */
+.ap-adjust-button {
+    background-color: transparent;
+    border: 2px solid #0957DE;
+    color: #0957DE;
+    border-radius: 25px;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px auto 20px;
+    display: block;
+    width: 90%;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Estilos para la pestaña de imagen procesada */
+.ap-processed-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ap-processed-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.ap-1);
+    margin-bottom: 20px;
+}
+
+.ap-no-processed-image {
+    color: #F44336;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.ap-food-details-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.ap-food-details-title {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.ap-food-details-list {
+    list-style: none;
+    padding: 0;
+}
+
+.ap-food-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.ap-food-name {
+    color: #333;
+    font-weight: 500;
+}
+
+.ap-food-percentage {
+    color: #0957DE;
+    font-weight: bold;
+}
+
+/* Estilos para el mensaje de error */
+.ap-analysis-error {
+    background-color: #ffebee;
+    border-radius: 8px;
+    color: #d32f2f;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* Estilos para la sección de imagen procesada */
+.ap-processed-image-section {
+    margin: 30px 0 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.ap-processed-image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.ap-1);
+    padding: 15px;
+    margin-top: 20px;
+    border-top: 3px solid #0957DE;
+}
+
+.ap-processed-image-title {
+    color: #0957DE;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.ap-processed-image {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.ap-1);
+    object-fit: contain;
+    border: 1px solid #eee;
+}
+
+.ap-processed-image-caption {
+    color: #666;
+    font-size: 14px;
+    margin-top: 12px;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Estilos para la evaluación general */
+.ap-general-evaluation {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f5f8ff;
+    border-radius: 8px;
+    border-left: 4px solid #0957DE;
+}
+
+.ap-evaluation-title {
+    color: #0957DE;
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.ap-evaluation-text {
+    color: #333;
+    font-size: 16px;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Estilos para la leyenda del gráfico */
+.ap-chart-legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.ap-legend-item {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.ap-legend-color {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    border-radius: 3px;
+}
+
+.ap-legend-color.ap-blue {
+    background-color: #0957DE;
+}
+
+.ap-legend-color.ap-orange {
+    background-color: #FF9800;
+}
+
+/* Estilos para el botón de historial */
+.ap-history-toggle-button {
+    background-color: white;
+    border: none;
+    border-radius: 25px;
+    color: #0957DE;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 15px auto;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(9, 87, 222, 0.ap-15);
+    transition: all 0.ap-3s ease;
+    position: relative;
+    overflow: hidden;
+    width: auto;
+    max-width: 280px;
+    margin-top: 20%;
+}
+
+.ap-history-toggle-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(9, 87, 222, 0.ap-05), rgba(9, 87, 222, 0.ap-1));
+    opacity: 0;
+    transition: opacity 0.ap-3s ease;
+}
+
+.ap-history-toggle-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(9, 87, 222, 0.ap-25);
+}
+
+.ap-history-toggle-button:hover::before {
+    opacity: 1;
+}
+
+.ap-history-toggle-button.ap-active {
+    background-color: #0957DE;
+    color: white;
+}
+
+.ap-history-toggle-icon {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ap-history-toggle-text {
+    flex: 1;
+    text-align: center;
+}
+
+.ap-history-toggle-arrow {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.ap-3s ease;
+}
+
+.ap-history-toggle-button.ap-active .ap-history-toggle-arrow {
+    transform: rotate(180deg);
+}
+
+/* Animación para el botón */
+@keyframes pulse-light {
+    0% {
+        box-shadow: 0 2px 8px rgba(9, 87, 222, 0.ap-15);
+    }
+    50% {
+        box-shadow: 0 2px 12px rgba(9, 87, 222, 0.ap-3);
+    }
+    100% {
+        box-shadow: 0 2px 8px rgba(9, 87, 222, 0.ap-15);
+    }
+}
+
+.ap-history-toggle-button.active {
+    animation: pulse-light 2s infinite;
+    margin-top: 0%;
+}
+
+/* Estilos del contenedor de historial */
+.ap-analysis-history-container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.ap-08);
+    margin: 0 auto 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    animation: slide-down 0.ap-3s ease-out;
+    border-top: 3px solid #0957DE;
+    overflow: hidden;
+}
+
+@keyframes slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ap-history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.ap-history-title {
+    color: #0957DE;
+    font-size: 18px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.ap-history-refresh-button {
+    background-color: #f5f8ff;
+    border: none;
+    color: #0957DE;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: all 0.ap-2s;
+}
+
+.ap-history-refresh-button:hover {
+    background-color: #e8efff;
+    transform: rotate(30deg);
+}
+
+.ap-history-refresh-button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+}
+
+.ap-history-refresh-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Estilo para el mensaje de carga */
+.ap-history-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+}
+
+.ap-history-loading p {
+    color: #666;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+/* Estilo para mensaje vacío */
+.ap-history-empty-message {
+    color: #666;
+    text-align: center;
+    padding: 30px 0;
+    font-style: italic;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+/* Lista de historial */
+.ap-history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #0957DE #f0f0f0;
+}
+
+.ap-history-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ap-history-list::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+.ap-history-list::-webkit-scrollbar-thumb {
+    background-color: #0957DE;
+    border-radius: 10px;
+}
+
+.ap-history-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: all 0.ap-2s;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.ap-history-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.ap-history-item:hover {
+    background-color: #f5f8ff;
+    transform: translateX(5px);
+}
+
+.ap-history-item-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 15px;
+    border: 1px solid #eee;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.ap-05);
+}
+
+.ap-history-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.ap-3s ease;
+}
+
+.ap-history-item:hover .ap-history-item-image img {
+    transform: scale(1.ap-1);
+}
+
+.ap-history-no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    color: #999;
+    font-size: 12px;
+}
+
+.ap-history-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.ap-history-item-date {
+    color: #888;
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.ap-history-item-date::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #0957DE;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.ap-history-item-evaluation {
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Estilos para el encabezado del historial */
+.ap-history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.ap-history-refresh-button {
+    background-color: transparent;
+    border: none;
+    color: #0957DE;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: background-color 0.ap-2s;
+}
+
+.ap-history-refresh-button:hover {
+    background-color: rgba(9, 87, 222, 0.ap-1);
+}
+
+.ap-history-refresh-button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.ap-history-refresh-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Ajuste para el título con encabezado */
+.ap-history-header .ap-history-title {
+    margin: 0;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 600px) {
+    .ap-analyze-screen {
+        padding-bottom: 80px;
+    }
+    
+    .ap-captured-food-image {
+        max-width: 100%;
+    }
+    
+    .ap-chart-bar {
+        font-size: 10px;
+        padding-top: 3px;
+    }
+    
+    .ap-recommendation-item {
+        font-size: 14px;
+    }
+    
+    .ap-adjust-button {
+        font-size: 14px;
+        padding: 10px;
+    }
+    
+    .ap-processed-image-wrapper {
+        padding: 10px;
+    }
+    
+    .ap-processed-image-title {
+        font-size: 16px;
+    }
+    
+    .ap-processed-image {
+        max-width: 280px;
+    }
+    
+    .ap-nutrition-button, 
+    .ap-take-another-photo-button {
+        width: 90%;
+        font-size: 15px;
+        padding: 12px 15px;
+        bottom: 15px;
+    }
+    
+    .ap-legend-item {
+        font-size: 12px;
+    }
+    
+    .ap-analysis-history-container {
+        padding: 10px;
+        width: 95%;
+    }
+    
+    .ap-history-item-image {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .ap-history-toggle-button {
+        font-size: 14px;
+        padding: 8px 15px;
+        max-width: 250px;
+    }
+    
+    .ap-history-toggle-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .ap-analyze-screen {
+        padding-bottom: 90px;
+    }
+    
+    .ap-analyze-header {
+        padding: 12px;
+    }
+    
+    .ap-analyze-mascot {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .ap-analyze-title {
+        font-size: 18px;
+    }
+    
+    .ap-analyze-description {
+        font-size: 14px;
+    }
+    
+    .ap-plate-container {
+        margin: 15px 0;
+    }
+    
+    .ap-plate-image {
+        max-width: 250px;
+    }
+    
+    .ap-nutrition-button {
+        padding: 12px 15px;
+        font-size: 15px;
+    }
+    
+    .ap-analysis-main-title {
+        font-size: 20px;
+    }
+    
+    .ap-analysis-subtitle {
+        font-size: 14px;
+    }
+    
+    .ap-tab-button {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+    
+    .ap-chart-y-axis span {
+        font-size: 12px;
+    }
+    
+    .ap-chart-label {
+        font-size: 12px;
+    }
+    
+    .ap-recommendations-title {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .ap-analyze-screen {
+        padding: 0 0 90px;
+        align-items: center;
+    }
+    
+    .ap-analyze-header {
+        width: 100%;
+    }
+    
+    .ap-analyze-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .ap-nutrition-button { 
+        font-size: 18px;
+        padding: 15px 30px;
+    }
+    
+    .ap-analysis-results-container {
+        padding: 30px;
+    }
+    
+    .ap-title-container {
+        margin-bottom: 20px;
+    }
+    
+    .ap-plate-image {
+        max-width: 350px;
+    }
+    
+    .ap-chart-area {
+        height: 350px;
+    }
+}
+
+/* Estilo para mensaje de error del historial */
+.ap-history-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    text-align: center;
+}
+
+.ap-history-error p {
+    color: #d32f2f;
+    margin-bottom: 15px;
+}
+
+.ap-history-retry-button {
+    background-color: #0957DE;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.ap-2s;
+}
+
+.ap-history-retry-button:hover {
+    background-color: #0748b3;
+}
+
+/* Estilos para las acciones del historial */
+.ap-history-item-actions {
+    display: flex;
+    align-items: center;
+}
+
+.ap-history-delete-button {
+    background-color: rgba(211, 47, 47, 0.ap-1);
+    border: none;
+    color: #d32f2f;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: all 0.ap-2s;
+    opacity: 0;
+}
+
+.ap-history-item:hover .ap-history-delete-button {
+    opacity: 1;
+}
+
+.ap-history-delete-button:hover {
+    background-color: rgba(211, 47, 47, 0.ap-2);
+    transform: scale(1.ap-1);
+}
+
+.ap-history-delete-button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.ap-5;
+    background-color: #f5f5f5;
+}
+
+.ap-history-delete-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+.ap-history-item-arrow {
+    color: #0957DE;
+    margin-left: 5px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(9, 87, 222, 0.ap-1);
+    transition: all 0.ap-2s;
+}
+
+.ap-history-item:hover .ap-history-item-arrow {
+    background-color: rgba(9, 87, 222, 0.ap-2);
+    transform: translateX(3px);
+}
+
+/* Mensaje de error al eliminar */
+.ap-history-delete-error {
+    background-color: #ffebee;
+    border-radius: 8px;
+    margin: 10px auto;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+.ap-history-delete-error p {
+    color: #d32f2f;
+    margin: 0;
+    font-size: 14px;
+}
+
+.ap-history-error-close {
+    background-color: transparent;
+    border: 1px solid #d32f2f;
+    color: #d32f2f;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.ap-2s;
+}
+
+.ap-history-error-close:hover {
+    background-color: #d32f2f;
+    color: white;
+} 

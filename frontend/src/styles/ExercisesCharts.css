@@ -1,0 +1,257 @@
+/* Contenedor general de la sección de charts */
+.charts-container {
+  padding: 20px;
+  text-align: left;
+  margin-top: -20px;
+}
+
+/* Título y fecha */
+.charts-title {
+  color: #0087FD;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: capitalize;
+  display: flex;
+  justify-content: flex-start; 
+  margin-bottom: 5px;
+}
+
+.charts-title-container{
+  color: #0087FD;
+  font-size: 17px;
+  font-family: 'Poppins';
+  font-weight: '500';
+  text-transform: 'capitalize';
+  word-wrap: 'break-word';
+}
+
+.charts-graph-box-container-down{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  gap: 10%;
+}
+
+.charts-date {
+  color: #0087FD;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 550;
+  line-height: 25px; /* 104.167% */
+  text-transform: capitalize;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-start; 
+}
+
+/* Gráfico de Steps */
+.charts-graph-box {
+  background: #fff;
+  padding: 23px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  text-align: center;
+  border: 1px solid #30323B;
+}
+
+.charts-graph-box h3 {
+  color: #0087FD;
+  font-family: Poppins;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: capitalize;
+  display: flex;
+  justify-content: flex-start; 
+}
+
+.charts-bar-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 200px;
+  padding: 0 5px;
+}
+
+.charts-bar-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  position: relative;
+}
+
+.charts-bar {
+  width: 20px;
+  background-color: #55B0FF;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.charts-number{ 
+  color: #0087FD; 
+  font-size: 13px; 
+  font-family: 'Poppins'; 
+  font-weight: '500'; 
+  text-transform: 'capitalize'; 
+  word-wrap: 'break-word';
+}
+
+.charts-number-container{
+  width: 22px;
+  height: 149px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 25px;
+  display: inline-flex;
+}
+
+.charts-graph-box-container-new{
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid #30323B;
+  background: #FFF;
+  margin-bottom: 15px;
+}
+
+.charts-graph-box-container-up{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.charts-graph-box-container-graph{
+  display: flex;
+  flex-direction: column;  /* Coloca los elementos en columna (uno debajo del otro) */
+  gap: 8px;                /* Espacio opcional entre los elementos */           /* Opcional: espacio dentro del contenedor */
+  
+}
+
+.charts-blue{
+  width: 16px;
+  height: 147px;
+  position: relative;
+}
+
+.chart-month-container{
+  height: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 40px;
+  display: flex;
+}
+
+.charts-bar-background {
+  width: 20px;
+  background-color: #E0E0E0;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+  border-radius: 4px 4px 0 0;
+}
+
+.charts-bar-label {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* Lista diaria */
+.charts-daily-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.charts-day-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.charts-day-col {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.charts-day {
+  font-size: 25px;
+  color: #55B0FF;
+}
+
+.stat-divider-day {
+  width: 1px;
+  height: 40px;
+  background: #55B0FF;
+  align-self: center;
+}
+
+.charts-day-timer {
+  font-size: 14px;
+  color: #55B0FF;
+} 
+
+.charts-day-time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+/* Estilo para la lista diaria similar a la imagen */
+.charts-day-row {
+  background: ##0F5FA;
+  padding: 10px 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 8px;
+  transition: background-color 0.3s ease;
+  color: #0957DE;
+}
+
+.charts-day-row:active {
+  background-color: #0957DE;
+  color: #55B0FF;
+}
+
+
+.charts-day-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Opcional: para centrar los elementos horizontalmente */
+  gap: 8px; /* Opcional: para añadir espacio entre los elementos */
+}
+
+
+
+.charts-bar {
+  width: 15px;
+  background-color: #0D6EFD;
+}
+
+.charts-bar-background {
+  background-color: #D1E3F8;
+}

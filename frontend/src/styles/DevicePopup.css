@@ -1,0 +1,545 @@
+/* Overlay de fondo */
+.device-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.device-popup-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.device-popup {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
+    height: auto;
+    max-height: 360px; /* Altura más reducida */
+}
+
+.device-popup.show {
+    transform: translateY(0);
+}
+
+.device-popup-header {
+    text-align: center;
+    padding: 0 40px;
+    margin-top: 20px;
+}
+
+.device-popup-header h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000000;
+    margin: 0;
+}
+
+.close-button {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.close-button svg {
+    stroke: #666666;
+}
+
+.radar-container {
+    width: 140px;
+    height: 140px;
+    margin: 20px auto;
+    position: relative;
+    background: linear-gradient(180deg, #E8F1FF 0%, #F8FAFF 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.radar-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border: 1.5px solid rgba(9, 87, 222, 0.15);
+    border-radius: 50%;
+}
+
+.radar-circle::before,
+.radar-circle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1.5px solid rgba(9, 87, 222, 0.1);
+    border-radius: 50%;
+}
+
+.radar-circle::before {
+    width: 70%;
+    height: 70%;
+}
+
+.radar-circle::after {
+    width: 40%;
+    height: 40%;
+}
+
+.radar-scan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(
+        from 0deg,
+        rgba(9, 87, 222, 0.1) 0%,
+        rgba(9, 87, 222, 0.05) 40%,
+        transparent 60%
+    );
+    animation: scan 3s linear infinite;
+}
+
+.radar-center {
+    width: 4px;
+    height: 4px;
+    background: rgba(9, 87, 222, 0.5);
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 10px rgba(9, 87, 222, 0.3);
+}
+
+.device-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #0957DE;
+    border-radius: 50%;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    animation: pulse 1.5s ease-in-out infinite;
+    box-shadow: 0 0 15px rgba(9, 87, 222, 0.4);
+}
+
+@keyframes scan {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(9, 87, 222, 0.4);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.7;
+        box-shadow: 0 0 20px rgba(9, 87, 222, 0.6);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(9, 87, 222, 0.4);
+    }
+}
+
+.action-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 10px;
+}
+
+.add-device-btn,
+.add-smartwatch-btn {
+    background: #0957DE;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.add-device-btn:active,
+.add-smartwatch-btn:active {
+    transform: scale(0.98);
+    background: #0748b3;
+}
+
+.cancel-btn {
+    background: none;
+    color: #0957DE;
+    border: none;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+/* Ajustes para PC */
+@media (min-width: 1024px) {
+    .device-popup {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        min-height: 400px;
+        margin: 0px auto;
+        margin-left: calc(50% - 258px);
+        border-radius: 24px 24px 0px 0px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        transform: none;
+    }
+
+    .device-popup.show {
+        border-radius: 24px 24px 0px 0px;
+    }
+
+    .device-popup-overlay {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .device-popup-header {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .radar-container {
+        width: 130px;  /* Reducido para mantener proporción */
+        height: 130px;
+        margin: auto auto;
+        position: relative;
+    }
+
+    .radar-circle {
+        width: 100%;
+        height: 100%;
+        border: 1.5px solid rgba(9, 87, 222, 0.15);
+    }
+
+    .radar-circle::before {
+        width: 75%;
+        height: 75%;
+    }
+
+    .radar-circle::after {
+        width: 50%;
+        height: 50%;
+    }
+
+    .radar-scan {
+        width: 100%;
+        height: 100%;
+    }
+
+    .radar-center {
+        width: 8px;
+        height: 8px;
+    }
+
+    .device-dot {
+        width: 12px;
+        height: 12px;
+    }
+
+    .device-found-content {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .device-image-container {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 20px;
+    }
+
+    .name-input-container {
+        width: 100%;
+        max-width: 400px;
+        margin: 30px auto;
+    }
+
+    .action-buttons {
+        width: 100%;
+        max-width: 400px;
+        margin: auto auto 0;
+        padding: 20px 0;
+    }
+
+    .success-message {
+        width: 100%;
+        max-width: 400px;
+        margin: auto;
+        text-align: center;
+    }
+}
+
+/* Estilos para la vista del dispositivo encontrado */
+.device-found-content {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.device-image-container {
+    width: 140px;
+    height: 140px;
+    margin: 20px auto;
+    background: linear-gradient(180deg, #E8F1FF 0%, #0957DE 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.device-image {
+    width: 80%;
+    height: auto;
+    object-fit: contain;
+}
+
+.device-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    margin: 15px auto;
+    
+}
+
+.add-smartwatch-btn {
+    background: #0957DE;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    width: calc(100% - 20px);
+    text-transform: uppercase;
+    margin: 0 10px;
+}
+
+/* Estilos para el input de nombre */
+.name-input-container {
+    margin: 20px 10px;
+    position: relative;
+    margin-bottom: 130px;
+    z-index: 2;
+}
+
+.name-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #E8F1FF;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+    margin-bottom: 4px;
+}
+
+.name-input:focus {
+    outline: none;
+    border-color: #0957DE;
+    background: #F8FAFF;
+}
+
+.name-input.error {
+    border-color: #FF3B30;
+    animation: shake 0.5s ease;
+}
+
+.name-input-help {
+    font-size: 12px;
+    color: #666;
+    margin-top: 8px;
+    margin-left: 4px;
+    position: relative;
+    z-index: 1;
+}
+
+.name-error {
+    color: #FF3B30;
+    font-size: 12px;
+    margin-top: 6px;
+    margin-left: 4px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.name-error.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.clear-input {
+    position: absolute;
+    right: 12px;
+    top: 35%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.clear-input:hover {
+    opacity: 1;
+}
+
+.clear-input svg {
+    stroke: #666666;
+}
+
+/* Estilos para el mensaje de éxito */
+.success-message {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.success-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+    animation: scaleIn 0.5s ease;
+}
+
+.success-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.success-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.device-success-name {
+    font-size: 18px;
+    color: #0957DE;
+    font-weight: 500;
+    margin: 5px 0;
+}
+
+/* Animaciones */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.continue-btn {
+    background: #0957DE;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    width: calc(100% - 20px);
+    text-transform: uppercase;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+.continue-btn:disabled {
+    background: #CCCCCC;
+    cursor: not-allowed;
+}
+
+/* Estilos para la sugerencia de nombre */
+.name-suggestion {
+    position: absolute;
+    top: 48px;
+    left: auto;
+    right: 12px;
+    background: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    color: #0957DE;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeInDown 0.2s forwards;
+    outline: none;
+    border: 1px solid #E8F1FF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+@keyframes fadeInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.name-suggestion:hover {
+    background-color: #F8FAFF;
+    border-color: #0957DE;
+} 

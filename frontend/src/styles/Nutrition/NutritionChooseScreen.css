@@ -1,0 +1,405 @@
+.nutrition-choose-screen {
+    padding: 20px;
+    background-color: #f9f9f9;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+
+.choose-plate-content-scrollable { 
+    position: relative;
+    z-index: -1;
+    flex: 1;
+    padding: 15px;
+    height: calc(100vh - 600px - 70px); /* Ajustar según el header y el input */
+}
+    
+.choose-plate-content {
+    padding: 15px;
+    height: calc(100vh- 70px);
+    background-color: #ffffff;
+}
+
+.plate-header {
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: white;
+    box-shadow: none;
+    height: 60px;
+}
+
+
+.choose-plate-container {
+    width: 100%;
+    margin-bottom: 0;
+    background-color: #F5F7FA;
+}
+
+.header-text-plate {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.header-text-plate h1 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: #000000;
+    align-items: center;
+}
+
+.header-text-plate p {
+    font-size: 12px;
+    color: #666666;
+    margin: 0;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.categories-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-right: 20px;
+}
+
+.categories {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    font-size: 18px;
+    gap: 10px;
+}  
+
+/* 🔹 Fondo SIEMPRE ocupa toda la pantalla y centra todo */
+.plate-screen {
+    width: 100%;
+    min-height: 100dvh;
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: max(40px, env(safe-area-inset-top)) 20px env(safe-area-inset-bottom);
+    position: relative;
+    gap: 100px;
+}
+  
+
+    .shop-button {
+        background: rgb(9, 87, 222); 
+        border: none;
+        color: white;
+        border-radius: 15px;
+        padding: 5px 30px;
+        font-family: 'Outfit', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        box-shadow: 0px 4px 12px rgba(9, 87, 222, 0.2);
+        align-items: center;
+    }
+
+  .plate-input-container {
+    position: sticky;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgb(255, 255, 255);
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+    .category {
+    padding: 15px 30px;
+    border: none;
+    background-color: #04BFDA;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.category.active {
+    background-color: #04BFDA;
+    color: white;
+}
+
+.category-button {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    padding-right: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    border: 1px #0957DE solid;
+    background: white;
+}
+
+.category-button.active {
+    background: #0957DE;
+    color: white;
+}
+
+.category-image {
+    width: 24px;
+    height: 24px;
+}
+
+.category-text {
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.meals-carousel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 100px;
+}
+
+.meal-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    flex: 0 0 auto;
+    width: 100%;
+    height: 100%;
+}
+
+.meal-image {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.meal-name {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 10px 0 5px;
+    display: flex;
+    justify-content: flex-start;
+    font-family: "Inter", sans-serif;
+}
+
+.highlight-kcal {
+    font-size: 14px;
+    font-weight: bold;
+    color: #0957DE;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 1px;
+}
+
+.meal-info {
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.meal-price {
+    font-size: 12px; /* Puedes ajustar para que coincida con .meal-info */
+    color: #666;     /* O el color que uses en .meal-info */
+    margin: 0.5em 0;
+    display: flex;
+    justify-content: flex-start;
+    font-family: "Inter", sans-serif;
+  }
+
+/* Estilos responsivos */
+@media (max-width: 1023px) {
+    .plate-screen {
+        height: auto;
+        padding: env(safe-area-inset-top, 40px) 0px env(safe-area-inset-bottom, 40px);
+        min-height: 100dvh;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .plate-header {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 18px 15px;
+        background: white;
+        z-index: 100;
+    }
+    
+    .categories {
+        font-size: 16px;
+        margin-left: 20px;
+    }
+    .meal-card {
+        padding: 10px;
+    }
+
+    .plate-input-container {
+        padding: 20px 12px;
+        margin-bottom: 0px;
+    }
+
+    .choose-plate-content {
+        position: sticky;
+        padding: 0px 15px;
+        overflow-y: auto;
+        margin-bottom: -100px; /* Asegurarse de que no haya margen inferior */
+    }
+
+    .choose-plate-container {
+        margin-top: -100px; /* Ajustado al header */
+       /* Asegurarse de que no haya margen inferior */
+        
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .plate-screen {
+        max-width: 500px;
+        margin: 40px auto;
+        border-radius: 24px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        min-height: calc(100vh - 80px);
+        padding: 0px 0px;
+    }
+
+    .choose-plate-content {
+        height: calc(100% - 80px);
+        max-width: 500px;
+        max-height: 500px;
+        margin: 0 auto;
+        overflow-y: auto;
+    }
+
+    .plate-header {
+        width: 100%;
+        border-radius: 24px 24px 0 0; /* Bordes superiores redondeados PC*/
+        background: white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .plate-input-container {
+        position: absolute;
+        bottom: 0;
+        width: 500px;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 15px 20px;
+        background: white;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        align-items: center;
+        gap: 12px;
+        border-radius: 0px 0px 24px 24px;
+    }
+
+    .choose-plate-container {
+        height: calc(100% - 80px);
+        margin-top: 70px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+    .categories {
+        font-size: 18px;
+        margin-left: 20px;
+    }
+    .meal-card {
+        padding: 15px;
+    }
+}
+
+.location-container {
+    width: 100%;
+    height: 24px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    display: inline-flex;
+    padding: 20px 15px;
+}
+
+.location-text {
+    color: #0D0D0D;
+    font-size: 16px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.search-container {
+    width: 100%;
+    height: 48px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    display: inline-flex;
+    padding: 10px 20px;
+}
+
+.search-input {
+    flex: 1 1 0;
+    height: 48px;
+    background-color: #ffffff;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px #a5a5a5 solid;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+    display: flex;
+}
+
+.search-icon {
+    width: 24px;
+    height: 24px;
+    padding: 2px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.categories-title {
+    color: black;
+    font-size: 18px;
+    font-family: "Inter", sans-serif;
+    min-height: 100%;
+    width: 100%;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px 20px;
+    display: inline-flex;
+    font-weight: 550;
+}

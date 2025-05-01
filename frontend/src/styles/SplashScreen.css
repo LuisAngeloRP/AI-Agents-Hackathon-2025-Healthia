@@ -1,0 +1,93 @@
+/* 🔹 Reset global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 🔹 Fondo SIEMPRE ocupa toda la pantalla y centra todo */
+.splash-screen {
+  width: 100vw;
+  height: 100vh;
+  background: #0957DE;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: dissolve 0.8s ease-in-out;
+  overflow: hidden; /* Evitar el desplazamiento */
+}
+
+/* 🔹 Contenedor del logo y el título */
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* 🔹 Logo */
+.splash-logo {
+  width: 286px;
+  height: 199px;
+  flex-shrink: 0;
+}
+
+/* 🔹 Título en SplashScreen (Blanco) */
+.splash-title {
+  color: #FFF;
+  font-family: "Outfit", sans-serif;
+  font-size: 36px;
+  font-weight: 650;
+}
+
+/* 🔹 Animación Dissolve */
+@keyframes dissolve {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 💻 PC */
+@media (min-width: 1024px) {
+  .splash-screen {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .splash-logo {
+    width: 340px;  /* Reducido desde 386px */
+    height: 237px; /* Reducido desde 269px, manteniendo proporción */
+  }
+}
+
+/* 💻 Móviles */
+@media (max-width: 1023px) {
+  .splash-screen {
+    height: auto;
+    min-height: 100dvh;
+    padding: env(safe-area-inset-top, 40px) 20px env(safe-area-inset-bottom, 40px);
+  }
+
+  .splash-logo {
+    width: 100%; /* Ajustar el tamaño del logo al 80% del ancho */
+    height: auto; /* Mantener la proporción del logo */
+  }
+
+  .splash-title {
+    font-size: 24px; /* Reducir el tamaño de la fuente del título */
+  }
+}
+

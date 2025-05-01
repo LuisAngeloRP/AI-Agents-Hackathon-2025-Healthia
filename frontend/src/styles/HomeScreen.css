@@ -1,0 +1,225 @@
+/* 🔹 Reset global y configuración táctil */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  min-height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  touch-action: pan-y pinch-zoom;
+  position: relative;
+}
+
+/* 🔹 Fondo SIEMPRE ocupa toda la pantalla y centra todo */
+.home-screen {
+  width: 100%;
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: max(40px, env(safe-area-inset-top)) 20px env(safe-area-inset-bottom);
+  position: relative;
+}
+
+/* 🔹 Contenedor principal - Asegurando scroll */
+.login-screen {
+    width: 100%;
+    min-height: 100dvh; /* Viewport dinámico */
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centrar verticalmente */
+    text-align: center;
+    padding: 20px 20px 40px;
+    position: relative;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+}
+
+/* 🔹 Fondo degradado superior */
+.background {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* 🔹 Contenedor del logo y texto */
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+  justify-content: center;
+  padding-bottom: 150px;
+}
+
+/* 🔹 Imagen del logo (Dimensiones exactas) */
+.home-logo {
+  width: clamp(150px, 30vw, 201px);
+  height: auto;
+  aspect-ratio: 201/220;
+  flex-shrink: 0;
+}
+
+/* 🔹 Título */
+.home-title {
+  color: #0957DE;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(28px, 5vw, 36px);
+  font-weight: 600;
+}
+
+/* 🔹 Subtítulo */
+.home-subtitle {
+  color: #888;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(16px, 2.5vw, 18px);
+  font-weight: 500;
+  line-height: 1.5;
+  max-width: min(296px, 90vw);
+}
+
+/* 🔹 Botón */
+.home-button {
+  width: clamp(200px, 50vw, 220px);
+  height: 60px;
+  border-radius: 70px;
+  background: #0957DE;
+  color: #FFF;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(16px, 2.5vw, 18px);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  margin-bottom: max(30px, env(safe-area-inset-bottom));
+  position: relative;
+  z-index: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 📱 Mobile */
+@media (max-width: 1023px) {
+  .home-screen {
+    height: auto;
+    min-height: 100dvh;
+    padding: env(safe-area-inset-top, 40px) 20px env(safe-area-inset-bottom, 40px);
+  }
+
+  .home-content {
+    margin-top: min(180px, 20vh);
+    padding-bottom: 30px;
+  }
+  
+  .home-logo {
+    width: 100%; /* Ajustar el tamaño del logo al 80% del ancho */
+    height: auto; /* Mantener la proporción del logo */
+  }
+
+  .home-button {
+    margin: clamp(30px, 10vh, 60px) 0;
+    position: relative;
+    bottom: clamp(20px, 5vh, 50px);
+  }
+
+  
+}
+
+/* 💻 PC */
+@media (min-width: 1024px) {
+  body {
+    background: #F5F7FA;
+  }
+
+  .home-screen {
+    max-width: 500px;
+    margin: 40px auto;
+    border-radius: 24px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    height: 100vh;
+    padding: 60px 40px;
+    
+  }
+
+  .background {
+    max-width: 500px;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .home-logo {
+    width: 80%;
+    height: auto;
+    aspect-ratio: 201/220;
+  }
+
+  .home-title {
+    font-size: 36px;
+  }
+
+  .home-subtitle {
+    font-size: 20px;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .home-button {
+    width: 240px;
+    min-height: 50px;
+    font-size: 20px;
+    gap: 10px;
+  }
+
+}
+
+.detail-meal-container {
+    /* Estilos para el contenedor principal */
+}
+
+.detail-meal-image {
+    /* Estilos para la imagen del plato */
+}
+
+.detail-meal-title {
+    /* Estilos para el título del plato */
+}
+
+.detail-meal-info {
+    /* Estilos para la información nutricional */
+}
+
+.detail-meal-ingredients-title {
+    /* Estilos para el título de ingredientes */
+}
+
+.detail-meal-ingredients {
+    /* Estilos para la lista de ingredientes */
+}
+
+.detail-meal-ingredient {
+    /* Estilos para cada ingrediente */
+}
+
+.detail-start-cooking-button {
+    /* Estilos para el botón de empezar a cocinar */
+}

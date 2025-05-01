@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap');
+
+.nutrition-screen {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+.nutrition-header {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    right: 0;
+    background: transparent;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+    box-shadow: none;
+}
+
+.back-button {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.nutrition-back-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.nutrition-back-button svg {
+    width: 17px;
+    height: 15px;
+}
+
+.nutrition-back-button path {
+    stroke: #0957DE;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.back-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.back-button svg {
+    width: 24px;
+    height: 24px;
+    stroke: #666;
+}
+
+.nutrition-content {
+    padding-top: 90px;
+    padding-bottom: 20px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nutrition-header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.nutrition-mascot {
+    display: flex;
+    width: 600px;
+    padding: 96px 105px 0px 105px;
+        justify-content: center;
+        align-items: center;
+        margin-top: -150px;
+    }
+
+.nutrition-button {
+    width: clamp(200px, 50vw, 220px);
+    height: 60px;
+    border-radius: 70px;
+    background: #0957DE;
+    color: #FFF;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(16px, 2.5vw, 18px);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    margin-bottom: max(30px, env(safe-area-inset-bottom));
+    position: relative;
+    z-index: 1;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: -50px;
+}
+
+
+.nutrition-title-container {
+    margin-top: -50px;
+}
+
+.nutrition-title {
+    color: #0957DE;
+    font-family: Outfit;
+    font-size: 38px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.nutrition-subtitle {
+    color: #0957DE;
+    text-align: center;
+    font-family: Outfit;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 25px; /* 166.667% */
+    margin: 0;
+    margin-top: 4px;
+    width: 310px;
+}
+
+.nutrition-info-box {
+    width: 231px;
+    height: 171px;
+    flex-shrink: 0;
+    border-radius: 24px;
+    border: 1px solid #0957DE;
+    background: #FFF;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nutrition-info {
+    width: 225.592px;
+    text-align: center;
+    font-family: Outfit;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 25px;
+}
+
+.nutrition-info p {
+    margin: 0;
+    margin-bottom: 8px;
+}
+
+.nutrition-info p:last-child {
+    margin-bottom: 0;
+}
+
+.info-label {
+    color: #0957DE;
+}
+
+.info-value {
+    color: #000000;
+}
+
+.calories-section {
+    margin-bottom: 16px;
+}
+
+.calories-section h3,
+.nutrition-section h4,
+.nutrition-section p {
+    color: #0957DE;
+    font-family: Outfit;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 25px;
+    margin: 0;
+}
+
+.calories {
+    color: #0957DE;
+    font-family: Outfit;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 25px;
+    margin: 0;
+}
+
+.nutrition-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 8px;
+}
+
+.nutrition-section:last-child {
+    margin-bottom: 0;
+}
+
+.view-plan-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 231px;
+    height: 48px;
+    padding: 8px 0;
+    background: #0957DE;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: 40px;
+    box-shadow: 0px 4px 12px rgba(9, 87, 222, 0.15);
+    transition: all 0.2s ease;
+}
+
+.view-plan-button:hover {
+    background: #0848B8;
+    transform: translateY(-1px);
+    box-shadow: 0px 6px 15px rgba(9, 87, 222, 0.2);
+}
+
+/* Estilos responsive */
+@media (min-width: 1024px) {
+    .nutrition-screen {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .nutrition-title-container {
+        margin-top: -60px;
+        padding: 0 20px;
+    }
+
+    .nutrition-header {
+        position: absolute;
+        box-shadow: none;
+        background: transparent;
+    }
+
+    .nutrition-content {
+        padding-top: 20px;
+    }
+
+    .nutrition-button { 
+        position: sticky;
+        width: 240px;
+        min-height: 60px;
+        font-size: 18px;
+        margin-top: 80px;
+    }
+
+    .nutrition-info-box {
+        width: calc(100% - 32px);
+        max-width: 300px;
+        margin: 16px;
+        margin-top: calc(20% - 80px);
+    }
+}
+
+@media (max-width: 1023px) {
+    .nutrition-screen {
+        padding: 0;
+    }
+
+    .nutrition-title-container {
+        margin-top: -30px;
+        padding: 0 20px;
+    }
+
+    .nutrition-header {
+        top: 15px;
+        padding: 12px 16px;
+    }
+
+    .nutrition-content {
+        padding-top: 80px;
+    }
+
+    .nutrition-mascot {
+        width: 100%;
+        max-width: 400px;
+        padding: 40px 20px 0;
+        margin-top: -150px;
+    }
+
+    .nutrition-title {
+        font-size: 32px;
+        margin-top: 30px;
+    }
+
+    .nutrition-info-box {
+        width: calc(100% - 32px);
+        max-width: 300px;
+        margin: 16px;
+        margin-top: calc(30% - 80px);
+    }
+
+    .view-plan-button {
+        width: calc(100% - 32px);
+        max-width: 300px;
+        margin: 16px;
+        position: relative;
+        bottom: auto;
+    }
+
+    .nutrition-button {
+        margin-top: 20px;
+        position: relative;
+    }
+} 
