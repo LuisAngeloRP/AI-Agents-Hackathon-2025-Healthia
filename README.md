@@ -1,12 +1,11 @@
 # 🤖 HealthIA
 
-> Your intelligent personal assistant for a healthier life — powered by AI and Azure Cloud.
+> Your intelligent personal assistant for a healthier life — powered by Azure AI and OpenAI.
 
 <img src="https://github.com/user-attachments/assets/6a6dfcd8-726a-41e1-bc6d-92ec5ad27f16" alt="HealthIA Demo"/>
 
-
 <p align="center">
-  <b>Personalized nutrition, workouts, and healthy-habit coaching—built with Java, Azure AI, and LangGraph.</b>
+  <b>Personalized nutrition, workouts, and health guidance — developed with Java, Azure AI, OpenAI, and LangGraph for the Microsoft Hackathon.</b>
 </p>
 
 <p align="center">
@@ -15,181 +14,134 @@
   </a>
 </p>
 
-<p align="center">
-  <a href="https://www.linkedin.com/in/fransua-leon/" target="_blank">
-    <img src="https://img.shields.io/badge/@Fransua_Leon-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Fransua Leon LinkedIn"/>
-  </a>
-  <a href="https://www.linkedin.com/in/sergioyupanquigomez/" target="_blank">
-    <img src="https://img.shields.io/badge/@Sergio_Yupanqui-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Sergio Yupanqui LinkedIn"/>
-  </a>
-  <a href="https://www.linkedin.com/in/luisangelorp/" target="_blank">
-    <img src="https://img.shields.io/badge/@Luis_Rodriguez-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Luis Rodriguez LinkedIn"/>
-  </a>
-  <a href="https://www.linkedin.com/in/andrepachecot/" target="_blank">
-    <img src="https://img.shields.io/badge/@André_Pacheco-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="André Pacheco LinkedIn"/>
-  </a>
-</p>
-
-
----
-
-## 💡 Try it now
-
 <p align="center"><strong>👉 To try it now, visit <a href="https://sergioyupanqui.com" target="_blank">www.sergioyupanqui.com</a> from your PC or mobile and analyze your own plate instantly!</strong></p>
 
-
-
 ---
+
 ## 🚨 The Problem
 
-According to the United Nations:
-- 43% of adults are overweight.
-- 32% of global deaths are due to cardiovascular diseases.
+- 43% of adults globally were overweight in 2022.
+- Cardiovascular diseases account for 17.9 million deaths annually (32% of all deaths).
+- 80% of users abandon health apps within 30 days due to lack of personalization.
 
-This is largely due to the lack of real-time and personalized health monitoring.
+📌 Source: WHO, 2024; Mustafa et al., 2022
 
 ---
 
 ## 💡 The Solution
 
-Meet **HealthIA** — a mobile app that uses **AI** and connects with smartwatches or smartbands to provide real-time, customized health support. Just sync your wearable device to start tracking key health metrics like heart rate, sleep, and activity levels:
+**HealthIA** is a cross-platform health assistant powered by Azure AI and OpenAI. It connects to wearables or accepts manual input to generate customized health plans and proactive recommendations. Our goal is to fight inactivity and poor nutrition with real-time, data-driven interventions.
 
-- Blood pressure
-- Heart rate
-- Sleep quality
-- Oxygen saturation
-- Temperature
-- Physical activity and more
+It includes:
+
+- Smart health chatbot (Q&A + insights)
+- OCR meal plate scanner using AI Vision
+- Personalized diet and workout recommendations
+- Medical condition-aware routines
+- Real-time feedback and gamification
 
 ---
 
-## 🔍 Core Features (5 Modules)
+## 🔍 Core Features
 
 ### 1. 🧠 Health Chatbot
-Interact with an AI assistant that understands your habits. Ask questions like:
-> “I work remotely and often have body aches.”
+Powered by Azure OpenAI, our assistant responds to queries like:
+> “I work remotely and feel back pain.”
 
-HealthIA will analyze your activity and suggest:
-- Stretching routines
-- Hydration reminders
-- Health tips based on your profile
+→ Suggests stretches, hydration, and custom wellness tips.
 
 ### 2. 📸 Meal Scanner with AI Vision
-- **Simply snap a photo of your plate using your phone.**
-- **Our AI model instantly analyzes it using the Harvard Plate Model** — a gold standard for balanced meals.
-- **You get real-time suggestions like: _Add more greens_, _Cut down on carbs_, or _Increase protein_ — all personalized.**
+- **Snap a photo** of your meal.
+- **Azure AI Vision** compares it with the **Harvard Plate Model**.
+- Personalized suggestions: _Add more greens_, _Reduce carbs_, _Increase protein_.
 
-👉 To try it now, visit **[www.sergioyupanqui.com](https://sergioyupanqui.com)** from your PC or mobile and analyze your own plate instantly!
+👉 Try it at **[www.sergioyupanqui.com](https://sergioyupanqui.com)** from your phone or PC!
 
-### 3. 🥗 Personalized Diet Plans
-HealthIA recommends meal options based on your nutritional needs:
-- Recipes with ingredients and nutritional facts
-- Shareable via WhatsApp
-- Optional cooking tutorial videos
+### 3. 🥗 Diet Generator
+- Recipes tailored to health profile and preferences.
+- Nutritional values and ingredient lists.
+- WhatsApp sharing and video tutorials.
 
-### 4. 🏋️ Activity Tracking & Workout Routines
-- Visual dashboard for your activity levels
-- Personalized weekly workout plans
-- Exercise tutorials based on calories burned
+### 4. 🏋️ Workout Planner
+- Weekly plans based on user metrics.
+- Tutorials for each exercise.
+- Adjusts based on calories burned.
 
-### 5. 🩺 Personalized Medical Profile
-Customize HealthIA with:
-- Allergies
-- Health conditions
-- Medical restrictions
-
-These inputs adjust dietary and workout suggestions to keep you safe and effective.
+### 5. 🩺 Medical Personalization
+- Input allergies, conditions, and goals.
+- AI filters recommendations for safety.
+- Smart reminders based on real-time analysis.
 
 ---
 
-## 🔔 Additional Features
+## 📊 System Architecture
 
-- Smart notifications based on your profile and usage patterns
-- Edit your profile and user settings anytime
+<img src="https://github.com/user-attachments/assets/8378437f-831f-47f9-82fd-a9bb34a6db81" alt="Azure Architecture" />
 
----
-
-## 🏗️ Architecture & Hosting
-
-HealthIA is hosted on **Azure Cloud**, ensuring:
-- Scalability
-- High availability (24/7)
-- Data security and backup
+Our Azure-hosted backend includes:
+- **Azure API Management** – Manages API calls between services
+- **Azure Functions** – Serverless logic for meals, routines, OCR, metrics
+- **Azure Blob Storage** – Secure storage for images
+- **Azure AI Vision** – OCR & food detection
+- **Azure Cosmos DB** – Stores chat, user data, metrics
+- **OpenAI API (via Azure)** – Smart chatbot + NLP
+- **Azure MySQL** – Profile & login data
+- **Azure Monitor + Logs** – Real-time system health
+- **Azure FrontDoor + WAF + DDoS Protection** – Security and global delivery
 
 ---
 
 ## 📆 Development Timeline
 
-The project will be implemented in **4 phases over one year**:
+Our Agile roadmap:
 
-1. ✅ Core app development
-2. 📷 Food recognition via AI vision
-3. 🕹️ Gamification system
-4. 🚀 Full Azure integration and product launch
-
-Total investment: **$253,000**
+1. ✅ Q1: Core App (chatbot, plans, UX)
+2. 📷 Q2: Vision OCR + Plate Analyzer
+3. 🎮 Q3: Gamification Engine
+4. 🚀 Q4: Final Release & Azure Marketplace
 
 ---
 
----
+## 💰 Business Model
 
-## 🌱 Social Impact
-
-HealthIA promotes:
-- Sustainable healthy habits
-- Preventative health care
-- Reduced medical costs
-- Better quality of life across global communities
+Freemium:
+- **Free**: 5 meal/exercise plans/week
+- **Premium** ($4.99/mo): Unlimited, real-time tracking, AI personalization
 
 ---
 
-## 📲 Try the Demo
+## 🌍 Social Impact
 
-Visit 👉 [www.sergioyupanqui.com](https://sergioyupanqui.com)
+HealthIA combats:
+- Poor diet and sedentary lifestyle
+- Dropout in traditional health apps
+- Lack of real-time personalized care
+
+We empower users with tools to take control of their wellness using familiar tech and friendly AI.
 
 ---
-
-
 
 ## 👥 Meet the Team
 
-<table align="center">
-  <tr>
-    <td align="center">
-      <strong>Fransua Leon</strong><br/>
-      <a href="https://www.linkedin.com/in/fransua-leon/" target="_blank">
-        <img src="https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white"/>
-      </a>
-    </td>
-    <td align="center">
-      <strong>Sergio Yupanqui</strong><br/>
-      <a href="https://www.linkedin.com/in/sergioyupanquigomez/" target="_blank">
-        <img src="https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white"/>
-      </a>
-    </td>
-    <td align="center">
-      <strong>Luis Rodriguez</strong><br/>
-      <a href="https://www.linkedin.com/in/luisangelorp/" target="_blank">
-        <img src="https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white"/>
-      </a>
-    </td>
-    <td align="center">
-      <strong>André Pacheco</strong><br/>
-      <a href="https://www.linkedin.com/in/andrepachecot/" target="_blank">
-        <img src="https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white"/>
-      </a>
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <a href="https://www.linkedin.com/in/fransua-leon/" target="_blank">
+    <img src="https://img.shields.io/badge/Fransua%20Leon-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="https://www.linkedin.com/in/sergioyupanquigomez/" target="_blank">
+    <img src="https://img.shields.io/badge/Sergio%20Yupanqui-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="https://www.linkedin.com/in/luisangelorp/" target="_blank">
+    <img src="https://img.shields.io/badge/Luis%20Rodriguez-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="https://www.linkedin.com/in/andrepachecot/" target="_blank">
+    <img src="https://img.shields.io/badge/André%20Pacheco-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+</p>
 
-
+---
 
 ## 📇 Contact
 
-Built with ❤️ by the HealthIA team.
+Built with ❤️ by Team **CevicherIA** — National University of Engineering (UNI)
 
-- 👤 Fransua Leon — [LinkedIn](https://www.linkedin.com/in/fransua-leon/)
-- 👤 Sergio Yupanqui — [LinkedIn](https://www.linkedin.com/in/sergioyupanquigomez/)
-- 👤 Luis Rodriguez — [LinkedIn](https://www.linkedin.com/in/luisangelorp/)
-- 👤 André Pacheco — [LinkedIn](https://www.linkedin.com/in/andrepachecot/)
-- 🌐 Website: [sergioyupanqui.com](https://sergioyupanqui.com)
+- 🌐 [sergioyupanqui.com](https://sergioyupanqui.com)
