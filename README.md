@@ -1,11 +1,11 @@
 # 🤖 HealthIA
 
-> Your intelligent personal assistant for a healthier life — powered by Azure AI and OpenAI.
+> Your intelligent personal assistant for a healthier life — powered by Azure and OpenAI.
 
 <img src="https://github.com/user-attachments/assets/6a6dfcd8-726a-41e1-bc6d-92ec5ad27f16" alt="HealthIA Demo"/>
 
 <p align="center">
-  <b>Personalized nutrition, workouts, and health guidance — developed with Java, Azure AI, OpenAI, and LangGraph for the Microsoft Hackathon.</b>
+  <b>Personalized nutrition, workouts, and health guidance — developed with Java, Azure, OpenAI, and LangGraph for the Microsoft Hackathon.</b>
 </p>
 
 <p align="center">
@@ -15,21 +15,6 @@
 </p>
 
 <p align="center"><strong>👉 To try it now, visit <a href="https://sergioyupanqui.com" target="_blank">www.sergioyupanqui.com</a> from your PC or mobile and analyze your own plate instantly!</strong></p>
-
-<p align="center">
-  <a href="https://www.linkedin.com/in/fransua-leon/" target="_blank">
-    <img src="https://img.shields.io/badge/Fransua%20Leon-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
-  </a>
-  <a href="https://www.linkedin.com/in/sergioyupanquigomez/" target="_blank">
-    <img src="https://img.shields.io/badge/Sergio%20Yupanqui-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
-  </a>
-  <a href="https://www.linkedin.com/in/luisangelorp/" target="_blank">
-    <img src="https://img.shields.io/badge/Luis%20Rodriguez-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
-  </a>
-  <a href="https://www.linkedin.com/in/andrepachecot/" target="_blank">
-    <img src="https://img.shields.io/badge/André%20Pacheco-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
-  </a>
-</p>
 
 ---
 
@@ -45,7 +30,7 @@
 
 ## 💡 The Solution
 
-**HealthIA** is a cross-platform health assistant powered by Azure AI and OpenAI. It connects to wearables or accepts manual input to generate customized health plans and proactive recommendations. Our goal is to fight inactivity and poor nutrition with real-time, data-driven interventions.
+**HealthIA** is a cross-platform health assistant powered by Azure and OpenAI. It connects to wearables or accepts manual input to generate customized health plans and proactive recommendations. Our goal is to fight inactivity and poor nutrition with real-time, data-driven interventions.
 
 It includes:
 
@@ -67,7 +52,7 @@ Powered by Azure OpenAI, our assistant responds to queries like:
 
 ### 2. 📸 Meal Scanner with AI Vision
 - **Snap a photo** of your meal.
-- **Azure AI Vision** compares it with the **Harvard Plate Model**.
+- **Azure Vision** compares it with the **Harvard Plate Model**.
 - Personalized suggestions: _Add more greens_, _Reduce carbs_, _Increase protein_.
 
 👉 Try it at **[www.sergioyupanqui.com](https://sergioyupanqui.com)** from your phone or PC!
@@ -97,7 +82,7 @@ Our Azure-hosted backend includes:
 - **Azure API Management** – Manages API calls between services
 - **Azure Functions** – Serverless logic for meals, routines, OCR, metrics
 - **Azure Blob Storage** – Secure storage for images
-- **Azure AI Vision** – OCR & food detection
+- **Azure Vision** – OCR & food detection
 - **Azure Cosmos DB** – Stores chat, user data, metrics
 - **OpenAI API (via Azure)** – Smart chatbot + NLP
 - **Azure MySQL** – Profile & login data
