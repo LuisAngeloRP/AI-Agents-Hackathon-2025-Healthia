@@ -35,7 +35,7 @@
 
 ## 💡 Try it now
 
-<p align="center"><strong>👉 To try it now, visit <a href="https://sergioyupanqui.com" target="_blank">sergioyupanqui.com</a> from your PC or mobile and analyze your own plate instantly!</strong></p>
+<p align="center"><strong>👉 To try it now, visit <a href="https://sergioyupanqui.com" target="_blank">www.sergioyupanqui.com</a> from your PC or mobile and analyze your own plate instantly!</strong></p>
 
 
 
@@ -145,7 +145,7 @@ HealthIA promotes:
 
 ## 📲 Try the Demo
 
-Visit 👉 [sergioyupanqui.com](https://sergioyupanqui.com)
+Visit 👉 [www.sergioyupanqui.com](https://sergioyupanqui.com)
 
 ---
 
