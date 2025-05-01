@@ -1,0 +1,142 @@
+{
+  "id": "fransua_leon_1982",
+  "nombre": "Fransua León",
+  "edad": 42,
+  "peso": 60,
+  "altura": 1.65,
+  "genero": "hombre",
+  "fecha_nacimiento": "1982-05-15",
+  "grupo_sanguineo": "A+",
+  "email": "fransua.leon@ejemplo.com",
+  "telefono": "+1234567890",
+  "condiciones_medicas": [
+    "Hipertensión arterial",
+    "Migraña ocasional"
+  ],
+  "alergias": [
+    "Penicilina",
+    "Polen"
+  ],
+  "medicamentos": [
+    {
+      "nombre": "Enalapril",
+      "dosis": "10mg",
+      "frecuencia": "Una vez al día",
+      "motivo": "Hipertensión"
+    },
+    {
+      "nombre": "Ibuprofeno",
+      "dosis": "400mg",
+      "frecuencia": "En caso de dolor",
+      "motivo": "Migraña"
+    },
+    {
+      "tipo": "medicamento",
+      "nombre": "Amlodipino",
+      "dosis": "5mg",
+      "frecuencia": "Una vez al día",
+      "motivo": "Control adicional de presión arterial",
+      "fecha_inicio": "2025-04-30",
+      "fecha": "2025-04-30 20:49:22"
+    }
+  ],
+  "cirugias": [
+    {
+      "tipo": "Apendicectomía",
+      "fecha": "2010-03-20",
+      "notas": "Sin complicaciones"
+    }
+  ],
+  "antecedentes_familiares": [
+    {
+      "parentesco": "Madre",
+      "condicion": "Diabetes tipo 2",
+      "edad_diagnostico": 50
+    },
+    {
+      "parentesco": "Padre",
+      "condicion": "Hipertensión arterial",
+      "edad_diagnostico": 45
+    }
+  ],
+  "estudios_medicos": [
+    {
+      "nombre": "Análisis de sangre",
+      "fecha": "2023-11-10",
+      "resultado": "Colesterol ligeramente elevado",
+      "archivos_asociados": []
+    },
+    {
+      "nombre": "Electrocardiograma",
+      "fecha": "2023-10-05",
+      "resultado": "Normal",
+      "archivos_asociados": []
+    },
+    {
+      "tipo": "estudio",
+      "nombre": "Medición de presión arterial",
+      "fecha": "2025-04-30 20:49:22",
+      "resultado": "140/90 mmHg",
+      "notas": "Ligeramente elevada"
+    },
+    {
+      "tipo": "estudio",
+      "nombre": "Examen de glucosa en ayunas",
+      "fecha": "2025-04-30",
+      "resultado": "95 mg/dL",
+      "notas": "Dentro del rango normal"
+    }
+  ],
+  "habitos": {
+    "tabaquismo": "No",
+    "alcohol": "Ocasional",
+    "actividad_fisica": "Moderada",
+    "dieta": "Mediterránea"
+  },
+  "ultima_actualizacion": "2025-04-30 23:41:23",
+  "historial_consultas": [
+    {
+      "tipo": "consulta",
+      "descripcion": "Últimamente he tenido dolor de cabeza más frecuente. ¿Podría estar relacionado con mi presión arterial?",
+      "fecha": "2025-04-30 20:49:17"
+    },
+    {
+      "tipo": "consulta",
+      "descripcion": "Últimamente he tenido dolor de cabeza más frecuente. ¿Podría estar relacionado con mi presión arterial?",
+      "fecha": "2025-04-30 20:49:22"
+    },
+    {
+      "tipo": "consulta",
+      "descripcion": "Consulta de seguimiento para control de presión arterial",
+      "fecha": "2025-05-01 10:30:00",
+      "recomendaciones": "Continuar con medicación actual. Revisar presión cada dos días."
+    },
+    {
+      "tipo": "consulta",
+      "descripcion": "¿Cuáles son mis medicamentos actuales?",
+      "fecha": "2025-04-30 21:02:44"
+    },
+    {
+      "tipo": "consulta",
+      "descripcion": "¿Cuáles son mis medicamentos y para qué sirven?",
+      "fecha": "2025-04-30 21:03:45"
+    },
+    {
+      "tipo": "consulta",
+      "descripcion": "mi información médica porfavor\n\n\n        INSTRUCCIÓN DE FORMATO IMPORTANTE: \n        Cuando generes listas, planes o contenido estructurado, utiliza formato Markdown:\n        \n        # Encabezado principal (Título)\n        ## Encabezado secundario (Sección)\n        ### Encabezado terciario (Subsección)\n        #### Encabezado de cuarto nivel\n        ##### Encabezado de quinto nivel\n        ###### Encabezado de sexto nivel\n        \n        Para listas:\n        * Elemento de lista con viñeta\n        * Otro elemento\n          * Subítem anidado\n          * Otro subítem\n        \n        Para listas numeradas:\n        1. Primer paso\n        2. Segundo paso\n           1. Subpaso 1\n           2. Subpaso 2\n        \n        Para enfatizar texto:\n        **texto en negrita**\n        *texto en cursiva*\n        \n        Para bloques de código o ejemplos:\n        ```\n        código o ejemplo aquí\n        ```\n        \n        Para tablas:\n        | Columna 1 | Columna 2 |\n        |-----------|-----------|\n        | Valor 1   | Valor 2   |\n        ",
+      "fecha": "2025-04-30 23:41:23"
+    }
+  ],
+  "vacunas": [
+    {
+      "nombre": "Influenza",
+      "fecha": "2024-10-15",
+      "proxima_dosis": "2025-10-15"
+    },
+    {
+      "nombre": "COVID-19",
+      "fecha": "2024-06-20",
+      "tipo": "Refuerzo anual"
+    }
+  ]
+}
