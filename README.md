@@ -6,7 +6,7 @@
 
 
 <p align="center">
-  <b>Combining artificial intelligence with Azure's wearable technology to tackle global health issues.</b>
+  <b>Personalized nutrition, workouts, and healthy-habit coaching—built with Java, Azure AI, and LangGraph.</b>
 </p>
 
 <p align="center">
@@ -79,7 +79,7 @@ HealthIA will analyze your activity and suggest:
 - **Our AI model instantly analyzes it using the Harvard Plate Model** — a gold standard for balanced meals.
 - **You get real-time suggestions like: _Add more greens_, _Cut down on carbs_, or _Increase protein_ — all personalized.**
 
-👉 To try it now, visit **[sergioyupanqui.com](https://sergioyupanqui.com)** from your PC or mobile and analyze your own plate instantly!
+👉 To try it now, visit **[www.sergioyupanqui.com](https://sergioyupanqui.com)** from your PC or mobile and analyze your own plate instantly!
 
 ### 3. 🥗 Personalized Diet Plans
 HealthIA recommends meal options based on your nutritional needs:
@@ -130,12 +130,6 @@ The project will be implemented in **4 phases over one year**:
 Total investment: **$253,000**
 
 ---
-
-## 💰 Business Model
-
-Freemium model:
-- **Free version**: Basic health and nutrition features
-- **Premium ($4.99/month)**: Real-time monitoring, Azure integration, and advanced customization
 
 ---
 
