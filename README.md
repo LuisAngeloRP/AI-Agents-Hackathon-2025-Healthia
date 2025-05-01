@@ -39,7 +39,7 @@ Developed with **Java**, **LangGraph**, and **Azure Cloud**, HealthIA leverages 
 HealthIA’s architecture orchestrates AI-powered modules via **LangGraph** and a **Java backend**, enabling:
 
 - Smart conversational coaching with **OpenAI (GPT-4o)**
-- Real-time food recognition using **Azure AI Vision**
+- Real-time food recognition using **OpenAI**
 - Custom workout and meal plans via context-aware agents
 - Medical constraints (e.g., allergies, conditions) that dynamically restrict or enhance suggestions
 
