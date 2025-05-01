@@ -1,0 +1,18 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "java",
+    "DB_URL": "jdbc:mysql://YOUR_AZURE_MYSQL_HOST:3306/YOUR_DATABASE_NAME?useSSL=true&requireSSL=true",
+    "DB_USER": "YOUR_MYSQL_USER",
+    "DB_PASSWORD": "YOUR_MYSQL_PASSWORD",
+    "GOOGLE_FIT_CLIENT_ID": "YOUR_GOOGLE_FIT_CLIENT_ID",
+    "GOOGLE_FIT_CLIENT_SECRET": "YOUR_GOOGLE_FIT_CLIENT_SECRET",
+    "GOOGLE_FIT_API_KEY": "YOUR_GOOGLE_FIT_API_KEY_IF_NEEDED" 
+  },
+  "Host": {
+    "LocalHttpPort": 7073, 
+    "CORS": "*",
+    "CORSCredentials": false
+  }
+} 

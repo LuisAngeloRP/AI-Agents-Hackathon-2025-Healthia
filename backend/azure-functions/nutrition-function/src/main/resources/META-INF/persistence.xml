@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+             version="3.1">
+
+  <persistence-unit name="HealthiaNutritionPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+    <!-- Add your JPA entity classes here -->
+    <class>com.healthia.functions.entities.UserDataEntity</class>
+    <class>com.healthia.functions.entities.MealPlanEntity</class>
+    <!-- <class>com.healthia.functions.entities.MealPlanDayEntity</class> -->
+    <!-- <class>com.healthia.functions.entities.MealEntity</class> -->
+
+    <properties>
+      <!-- Database connection properties are injected via environment variables by JPAUtil -->
+      <!-- These are standard Hibernate properties -->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/> <!-- Or "validate", "create", "create-drop" -->
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
+      
+      <!-- JDBC properties that Hibernate will use if not overridden by JPAUtil's direct config -->
+      <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+      <!-- <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/healthia_nutrition" /> -->
+      <!-- <property name="jakarta.persistence.jdbc.user" value="root" /> -->
+      <!-- <property name="jakarta.persistence.jdbc.password" value="password" /> -->
+    </properties>
+  </persistence-unit>
+</persistence> 

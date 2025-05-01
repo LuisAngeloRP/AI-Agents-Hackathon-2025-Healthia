@@ -31,7 +31,7 @@ public class OpenAIService {
 
     private final OpenAIClient openAIClient;
     private final ObjectMapper objectMapper;
-    // TODO: Inject S3Service if direct OpenAI calls need to upload images
+    // BlobStorageService could be injected here if direct OpenAI calls need to upload images
 
     @Value("${app.openai.model}")
     private String chatModelName;
@@ -118,8 +118,7 @@ public class OpenAIService {
 
                 paramsBuilder.messages(apiMessages); // Update messages in builder
 
-                 // TODO: S3 Upload if needed here?
-                 // The Python code didn't explicitly upload to S3 in the @openai path
+                 // The Python code didn't explicitly upload to S3/Blob in the @openai path
                  // Assuming we just pass base64 for now.
 
              } catch (IOException e) {

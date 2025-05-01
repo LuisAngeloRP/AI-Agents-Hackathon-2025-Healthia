@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+             version="3.1">
+
+  <persistence-unit name="HealthiaSmartwatchPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+    <!-- Add your JPA entity classes here -->
+    <class>com.healthia.functions.entities.UserHealthMetricEntity</class>
+    <class>com.healthia.functions.entities.UserTimeSeriesDataPointEntity</class>
+    <!-- If UserDataEntity is in a shared module and this PU needs to know about it for relationships (not strictly necessary if only using userId as FK string) -->
+    <!-- <class>com.healthia.shared.entities.UserDataEntity</class> -->
+
+    <properties>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/> 
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
+      <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+      <!-- Connection details (URL, user, password) will be provided by JPAUtil from environment variables -->
+    </properties>
+  </persistence-unit>
+</persistence> 

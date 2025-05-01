@@ -1,0 +1,17 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "java",
+    "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY",
+    "OPENAI_MODEL": "gpt-4o-mini",
+    "DB_URL": "jdbc:mysql://YOUR_AZURE_MYSQL_HOST:3306/YOUR_DATABASE_NAME?useSSL=true&requireSSL=true",
+    "DB_USER": "YOUR_MYSQL_USER",
+    "DB_PASSWORD": "YOUR_MYSQL_PASSWORD"
+  },
+  "Host": {
+    "LocalHttpPort": 7072,
+    "CORS": "*",
+    "CORSCredentials": false
+  }
+} 

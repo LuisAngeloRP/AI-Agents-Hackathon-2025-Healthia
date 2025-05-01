@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.healthia</groupId>
+        <artifactId>azure-functions</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <!-- <groupId>com.healthia</groupId> GroupId is inherited -->
+    <artifactId>healthia-nutrition-function</artifactId>
+    <!-- <version>1.0-SNAPSHOT</version> Version is inherited -->
+    <packaging>jar</packaging>
+
+    <name>HealthIA Nutrition Azure Function</name>
+
+    <properties>
+        <!-- Inherited: project.build.sourceEncoding, java.version, azure.functions.maven.plugin.version, azure.functions.java.library.version, maven.compiler.source, maven.compiler.target -->
+        <openai.java.version>1.5.1</openai.java.version> <!-- Manage in parent azure-functions POM -->
+        <jackson.version>2.15.2</jackson.version> <!-- Manage in parent azure-functions POM -->
+        <mysql.connector.version>8.0.33</mysql.connector.version> <!-- Manage in parent azure-functions POM -->
+        <hibernate.version>6.2.7.Final</hibernate.version> <!-- Specific to this or manage in parent -->
+        <jakarta.persistence.version>3.1.0</jakarta.persistence.version> <!-- Specific to this or manage in parent -->
+        <slf4j.version>2.0.7</slf4j.version> <!-- Manage in parent azure-functions POM -->
+        <logback.version>1.4.8</logback.version> <!-- Manage in parent azure-functions POM -->
+
+        <!-- Azure Function App specific properties -->
+        <functionAppName-nutrition>your-nutrition-function-app-name</functionAppName-nutrition>
+        <functionResourceGroup>your-resource-group</functionResourceGroup>
+        <functionAppServicePlanName>your-app-service-plan</functionAppServicePlanName>
+        <functionRegion>your-region</functionRegion>
+        <stagingDirectory>${project.build.directory}/azure-functions/${functionAppName-nutrition}</stagingDirectory>
+
+    </properties>
+
+    <dependencies>
+        <!-- Azure Functions -->
+        <dependency>
+            <groupId>com.microsoft.azure.functions</groupId>
+            <artifactId>azure-functions-java-library</artifactId>
+            <!-- Version managed by parent -->
+        </dependency>
+
+        <!-- OpenAI -->
+        <dependency>
+            <groupId>com.openai</groupId>
+            <artifactId>openai-java</artifactId>
+            <version>${openai.java.version}</version>
+        </dependency>
+
+        <!-- MySQL JDBC Driver -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>${mysql.connector.version}</version>
+        </dependency>
+
+        <!-- JPA (Hibernate) -->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>${jakarta.persistence.version}</version>
+        </dependency>
+
+        <!-- Azure Blob Storage - Keep if needed for other specific reasons, otherwise can be removed -->
+        <!-- <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-storage-blob</artifactId>
+        </dependency> -->
+
+        <!-- Jackson for JSON processing -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <!-- Version managed by parent -->
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <!-- Version managed by parent -->
+            <scope>test</scope>
+        </dependency>
+         <!-- HealthIA Core Models/Services Dependency (Example) -->
+        <dependency>
+            <groupId>com.healthia</groupId>
+            <artifactId>healthia-app</artifactId> 
+            <!-- Version will be inherited from parent pom -->
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <!-- Version and configuration inherited from parent -->
+            </plugin>
+            <plugin>
+                <groupId>com.microsoft.azure</groupId>
+                <artifactId>azure-functions-maven-plugin</artifactId>
+                <!-- Version inherited from parent -->
+                <configuration>
+                    <appName>${functionAppName-nutrition}</appName> 
+                    <resourceGroup>${functionResourceGroup}</resourceGroup> 
+                    <appServicePlanName>${functionAppServicePlanName}</appServicePlanName>
+                    <region>${functionRegion}</region>
+                    <runtime>
+                        <os>linux</os>
+                        <!-- javaVersion is inherited -->
+                    </runtime>
+                    <appSettings>
+                        <property>
+                            <name>FUNCTIONS_EXTENSION_VERSION</name>
+                            <value>~4</value>
+                        </property>
+                        <property>
+                            <name>FUNCTIONS_WORKER_RUNTIME</name>
+                            <value>java</value>
+                        </property>
+                        <property>
+                            <name>APP_OPENAI_MODEL</name>
+                            <value>%OPENAI_MODEL%</value>
+                        </property>
+                        <property>
+                            <name>APP_USER_DATA_DIR</name> 
+                            <value>data_function</value>
+                        </property>
+                        <!-- MySQL Connection Settings -->
+                        <property>
+                            <name>DB_URL</name>
+                            <value>%DB_URL%</value>
+                        </property>
+                        <property>
+                            <name>DB_USER</name>
+                            <value>%DB_USER%</value>
+                        </property>
+                        <property>
+                            <name>DB_PASSWORD</name>
+                            <value>%DB_PASSWORD%</value>
+                        </property>
+                    </appSettings>
+                    <deployment>
+                        <resources>
+                            <resource>
+                                <directory>${project.basedir}</directory>
+                                <includes>
+                                    <include>host.json</include>
+                                    <include>local.settings.json</include>
+                                </includes>
+                            </resource>
+                        </resources>
+                    </deployment>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>package-functions</id>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${stagingDirectory}/lib</outputDirectory>
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <!-- Version managed by parent -->
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.healthia.functions.NutritionFunction</mainClass> 
+                                </transformer>
+                            </transformers>
+                             <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>com.microsoft.azure.functions:azure-functions-java-library</exclude>
+                                </excludes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project> 

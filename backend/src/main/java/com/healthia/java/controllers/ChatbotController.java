@@ -2,7 +2,7 @@ package com.healthia.java.controllers;
 
 import com.healthia.java.models.*;
 import com.healthia.java.services.OpenAIService;
-import com.healthia.java.services.S3Service;
+import com.healthia.java.services.BlobStorageService;
 import com.healthia.java.services.agents.SupervisorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,13 +36,13 @@ public class ChatbotController {
 
     private final SupervisorService supervisorService;
     private final OpenAIService openAIService;
-    private final S3Service s3Service;
+    private final BlobStorageService blobStorageService;
 
     @Autowired
-    public ChatbotController(SupervisorService supervisorService, OpenAIService openAIService, S3Service s3Service) {
+    public ChatbotController(SupervisorService supervisorService, OpenAIService openAIService, BlobStorageService blobStorageService) {
         this.supervisorService = supervisorService;
         this.openAIService = openAIService;
-        this.s3Service = s3Service;
+        this.blobStorageService = blobStorageService;
     }
 
     // Handles JSON requests
@@ -95,8 +95,8 @@ public class ChatbotController {
     ) {
         Path tempImagePath = null;
         String responseContent;
-        String mediaUrl = null; // Will be populated by S3 upload
-        byte[] imageData = null; // Hold image data for S3 upload
+        String mediaUrl = null; // Will be populated by Blob Storage upload
+        byte[] imageData = null; // Hold image data for Blob Storage upload
         String imageExtension = "tmp"; // Default extension
 
         try {
@@ -109,7 +109,7 @@ public class ChatbotController {
                     log.info("Processing image from multipart file: {}", mediaFile.getOriginalFilename());
                     originalFilename = mediaFile.getOriginalFilename(); // Ensure we use the multipart filename
                     imageExtension = getFileExtension(originalFilename);
-                    imageData = mediaFile.getBytes(); // Read into memory for S3 upload
+                    imageData = mediaFile.getBytes(); // Read into memory for Blob Storage upload
                     imageInputStream = new ByteArrayInputStream(imageData);
                     imageSize = imageData.length;
                 } else if (mediaContentJson != null && mediaContentJson.startsWith("data:image")) {
@@ -138,21 +138,21 @@ public class ChatbotController {
                 Files.copy(new ByteArrayInputStream(imageData), tempImagePath, StandardCopyOption.REPLACE_EXISTING); // Use copied stream
                 log.info("Image saved temporarily to: {}", tempImagePath);
 
-                // Upload to S3
-                log.info("Uploading image to S3...");
-                 Map<String, Object> s3Result = s3Service.uploadFileToS3(
+                // Upload to Blob Storage
+                log.info("Uploading image to Blob Storage...");
+                 Map<String, Object> blobResult = blobStorageService.uploadFileToBlob(
                          new ByteArrayInputStream(imageData), // Provide a new stream from bytes
                          imageSize,
                          imageExtension,
                          id,
                          originalFilename,
-                         null // Use default S3 folder configured in properties
+                         null // Use default Blob folder configured in properties
                  );
-                 if (Boolean.TRUE.equals(s3Result.get("success"))) {
-                     mediaUrl = (String) s3Result.get("url");
-                     log.info("Image uploaded to S3: {}", mediaUrl);
+                 if (Boolean.TRUE.equals(blobResult.get("success"))) {
+                     mediaUrl = (String) blobResult.get("url");
+                     log.info("Image uploaded to Blob Storage: {}", mediaUrl);
                  } else {
-                     log.warn("S3 upload failed: {}. Proceeding without S3 URL.", s3Result.get("error"));
+                     log.warn("Blob Storage upload failed: {}. Proceeding without Blob URL.", blobResult.get("error"));
                      // Fallback: Python code saved locally. Here we just proceed without URL.
                      // Could implement local saving/serving as a fallback if needed.
                  }
@@ -169,13 +169,13 @@ public class ChatbotController {
                         originalFilename
                 );
                 responseContent = directResponse.getRespuesta();
-                // Use S3 mediaUrl if available, otherwise keep OpenAI service one (likely null)
+                // Use Blob Storage mediaUrl if available, otherwise keep OpenAI service one (likely null)
                 mediaUrl = (mediaUrl != null) ? mediaUrl : directResponse.getMediaUrl();
             } else {
                  log.info("Routing request to SupervisorService for ID: {}", id);
                  // Supervisor expects Path for image
                 responseContent = supervisorService.processRequest(message, tempImagePath);
-                // S3 upload was handled before calling supervisor if image was present
+                // Blob Storage upload was handled before calling supervisor if image was present
             }
 
             // --- Construct final response --- 
@@ -184,7 +184,7 @@ public class ChatbotController {
                     .id(id)
                     .title(String.format("Conversación #%d", id))
                     .createdAt(OffsetDateTime.now(ZoneOffset.UTC)) // Use UTC time
-                    .mediaUrl(mediaUrl) // Include S3 URL if generated
+                    .mediaUrl(mediaUrl) // Include Blob Storage URL if generated
                     .error(null)
                     .build();
 

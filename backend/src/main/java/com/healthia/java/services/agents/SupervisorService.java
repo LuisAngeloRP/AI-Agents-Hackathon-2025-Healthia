@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.healthia.java.models.UserData;
+import com.healthia.java.services.AzureFunctionClientService;
 import com.openai.client.OpenAIClient;
 import com.openai.models.ChatModel;
 import com.openai.models.chat.completions.ChatCompletion;
@@ -17,6 +18,11 @@ import com.openai.models.chat.completions.UserMessageContentPart;
 import com.openai.models.chat.completions.UserMessageContentPartImage;
 import com.openai.models.chat.completions.UserMessageContentPartText;
 import jakarta.annotation.PostConstruct;
+import org.bsc.langgraph4j.Graph;
+import org.bsc.langgraph4j.StateGraph;
+import org.bsc.langgraph4j.action.AsyncNodeAction;
+import org.bsc.langgraph4j.action.NodeAction;
+import org.bsc.langgraph4j.state.AgentState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +33,23 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.lang.reflect.Field;
+
+import static org.bsc.langgraph4j.StateGraph.END;
+import static org.bsc.langgraph4j.StateGraph.START;
 
 @Component
 public class SupervisorService {
 
     private static final Logger log = LoggerFactory.getLogger(SupervisorService.class);
+    private static final String DETERMINE_AGENT_NODE = "determineAgentNode";
+    private static final String NUTRITION_AGENT_NODE = "nutritionAgentNode";
+    private static final String EXERCISE_AGENT_NODE = "exerciseAgentNode";
+    private static final String MEDICAL_AGENT_NODE = "medicalAgentNode";
+    private static final String FALLBACK_NODE = "fallbackNode";
 
     @Value("${app.openai.model}") // Inject model name from properties
     private String chatModelName;
@@ -42,6 +57,8 @@ public class SupervisorService {
     private final OpenAIClient openAIClient;
     private final ObjectMapper objectMapper = new ObjectMapper(); // For converting UserData to String
     private final Map<String, SpecializedAgent> agents = new HashMap<>();
+    private Graph<HealthiaAgentState> agentGraph;
+    private final AzureFunctionClientService azureFunctionClientService;
 
     // Using the UserData POJO
     // TODO: This needs to be loaded/persisted if state is required across requests
@@ -93,16 +110,210 @@ public class SupervisorService {
     private MedicalAgent medicalAgent;
 
     @Autowired
-    public SupervisorService(OpenAIClient openAIClient) {
+    public SupervisorService(OpenAIClient openAIClient, AzureFunctionClientService azureFunctionClientService) {
         this.openAIClient = openAIClient;
+        this.azureFunctionClientService = azureFunctionClientService;
     }
 
     @PostConstruct
-    private void registerAgents() {
+    private void initializeGraph() {
         registerAgent("nutricion", nutritionAgent);
         registerAgent("ejercicio", exerciseAgent);
         registerAgent("medico", medicalAgent);
         log.info("Specialized agents registered with Supervisor.");
+
+        // Define Nodes
+        NodeAction<HealthiaAgentState> determineAgentAction = state -> {
+            String userInput = state.getUserInput().orElse("");
+            Path imagePath = state.getImagePath().orElse(null);
+            String selectedAgentName = "ninguno"; // Default to ninguno
+            Integer conversationId = state.getUserData().map(ud -> safeGetConversationId(ud)).orElse(null);
+
+            if (imagePath != null) {
+                state.setIsImageProcessing(true);
+                String base64Image = null;
+                try {
+                    base64Image = encodeImageToBase64(imagePath);
+                } catch (IOException e) {
+                    log.error("Error encoding image: {}", imagePath, e);
+                    if (userInput != null && !userInput.isEmpty()) {
+                        if (isPersonalMedicalQuery(userInput)) { selectedAgentName = "medico"; }
+                        else { selectedAgentName = selectAgentForText(userInput); }
+                        log.info("Image encoding failed. Selected agent based on text: {}", selectedAgentName);
+                    } else {
+                        selectedAgentName = "ninguno";
+                        log.info("Image encoding failed and no text input. Selected agent: {}", selectedAgentName);
+                    }
+                    state.setSelectedAgentName(selectedAgentName);
+                    return state.data();
+                }
+
+                AzureImageAnalysisResponse azureResponse = azureFunctionClientService.analyzeImage(base64Image, conversationId);
+                state.setAzureImageAnalysisResponse(azureResponse);
+
+                boolean azureAnalyzedAsNutrition = false;
+                if (azureResponse != null && azureResponse.getAnalisis() != null &&
+                    azureResponse.getAnalisis().getDetallesAlimentos() != null &&
+                    !azureResponse.getAnalisis().getDetallesAlimentos().isEmpty()) {
+                    selectedAgentName = "nutricion";
+                    azureAnalyzedAsNutrition = true;
+                    log.info("Azure Function identified nutritional content. Selected agent: nutricion");
+                } else {
+                    log.info("Azure Function did not identify nutritional content or call failed/returned minimal data. Falling back to general image categorization.");
+                    selectedAgentName = selectAgentForImage(base64Image, userInput);
+
+                    if ("nutricion".equals(selectedAgentName) && azureResponse != null && azureResponse.getAnalisis() != null) {
+                        log.warn("General image categorization selected 'nutricion', but specialized Azure function already analyzed and found no specific nutrition details. Overriding to 'ninguno'.");
+                        selectedAgentName = "ninguno";
+                    }
+                    log.info("General image categorization (after Azure check) selected agent: {}", selectedAgentName);
+                }
+            } else {
+                state.setIsImageProcessing(false);
+                if (isPersonalMedicalQuery(userInput)) {
+                    selectedAgentName = "medico";
+                } else {
+                    selectedAgentName = selectAgentForText(userInput);
+                }
+                log.info("Text-only input. Selected agent: {}", selectedAgentName);
+            }
+            state.setSelectedAgentName(selectedAgentName);
+            log.info("Final determined agent: {} for input: '{}', image: {}", selectedAgentName, userInput, imagePath);
+            return state.data();
+        };
+
+        NodeAction<HealthiaAgentState> nutritionAgentAction = state -> {
+            String userInput = state.getUserInput().orElse("");
+            Path imagePath = state.getImagePath().orElse(null);
+            UserData userData = state.getUserData().orElse(currentUserData);
+            String mdEnhancedInput = userInput + "\n\n" + markdownInstruction;
+            String response;
+
+            Optional<AzureImageAnalysisResponse> azureResponseOpt = state.getAzureImageAnalysisResponse();
+            boolean useAzureData = "nutricion".equals(state.getSelectedAgentName().orElse("")) &&
+                                   azureResponseOpt.isPresent() &&
+                                   azureResponseOpt.get().getAnalisis() != null &&
+                                   azureResponseOpt.get().getAnalisis().getDetallesAlimentos() != null &&
+                                   !azureResponseOpt.get().getAnalisis().getDetallesAlimentos().isEmpty();
+
+            if (useAzureData) {
+                log.info("NutritionAgent using detailed Azure Image Analysis response.");
+                response = nutritionAgent.processWithUserData("Datos de imagen procesados con Azure: " + azureResponseOpt.get().getAnalisis().getEvaluacionGeneral() + ". Consulta original: " + mdEnhancedInput, userData);
+            } else if (state.isImageProcessing().orElse(false) && imagePath != null && "nutricion".equals(state.getSelectedAgentName().orElse(""))) {
+                log.info("NutritionAgent using standard image processing (imagePath) as Azure data was not suitable or available.");
+                response = nutritionAgent.processImage(imagePath, mdEnhancedInput, userData);
+            } else {
+                log.info("NutritionAgent using text-based processing for input: {}", mdEnhancedInput);
+                response = nutritionAgent.processWithUserData(mdEnhancedInput, userData);
+            }
+            state.setAgentResponse(String.format("[Agente de Nutrición] %s", response));
+            return state.data();
+        };
+
+        NodeAction<HealthiaAgentState> exerciseAgentAction = state -> {
+            String userInput = state.getUserInput().orElse("");
+            Path imagePath = state.getImagePath().orElse(null);
+            UserData userData = state.getUserData().orElse(currentUserData);
+            String mdEnhancedInput = userInput + "\n\n" + markdownInstruction;
+            String response;
+            if (state.isImageProcessing().orElse(false) && imagePath != null) {
+                response = exerciseAgent.processImage(imagePath, mdEnhancedInput, userData);
+            } else {
+                response = exerciseAgent.processWithUserData(mdEnhancedInput, userData);
+            }
+            state.setAgentResponse(String.format("[Agente de Ejercicio] %s", response));
+            return state.data();
+        };
+
+        NodeAction<HealthiaAgentState> medicalAgentAction = state -> {
+            String userInput = state.getUserInput().orElse("");
+            Path imagePath = state.getImagePath().orElse(null);
+            UserData userData = state.getUserData().orElse(currentUserData); // Use current or default
+            // Attempt to load full medical history for the user. 
+            // This logic might be centralized or enhanced if MedicalAgent's direct file access is removed.
+            UserData richUserData = medicalAgent.getComprehensiveUserData(userData.getId(), userData);
+            Integer conversationId = safeGetConversationId(richUserData);
+
+            String response;
+
+            if (state.isImageProcessing().orElse(false) && imagePath != null) {
+                // For medical images, still use the local MedicalAgent's image processing.
+                // A separate Azure Medical Image Analysis function could be integrated later if needed.
+                log.info("MedicalAgentNode: Processing image locally with MedicalAgent for input: {}", userInput);
+                response = medicalAgent.processImage(imagePath, userInput + "\n\n" + markdownInstruction, richUserData);
+            } else {
+                // Text-based medical query
+                log.info("MedicalAgentNode: Processing text query. Attempting Azure Function call for input: {}", userInput);
+                AzureMedicalTextAnalysisResponse azureResponse = azureFunctionClientService.analyzeMedicalText(userInput, richUserData, conversationId);
+                state.setAzureMedicalTextAnalysisResponse(azureResponse);
+
+                if (azureResponse != null && azureResponse.getAnalysisResult() != null && !azureResponse.getAnalysisResult().isEmpty()) {
+                    log.info("MedicalAgentNode: Successfully used Azure Medical Text Analysis Function.");
+                    response = azureResponse.getAnalysisResult() + Optional.ofNullable(azureResponse.getDisclaimer()).orElse("");
+                } else {
+                    log.warn("MedicalAgentNode: Azure Medical Text Analysis Function failed or returned empty. Falling back to local MedicalAgent.");
+                    response = medicalAgent.processWithUserData(userInput + "\n\n" + markdownInstruction, richUserData);
+                }
+            }
+            state.setAgentResponse(String.format("[Agente de Médico] %s", response));
+            return state.data();
+        };
+
+        NodeAction<HealthiaAgentState> fallbackAction = state -> {
+            String userInput = state.getUserInput().orElse("");
+            String response;
+            if (state.isImageProcessing().orElse(false) && state.getImagePath().isPresent()) {
+                try {
+                    String base64Image = encodeImageToBase64(state.getImagePath().get());
+                    response = generateImageFallbackResponse(base64Image);
+                } catch (IOException e) {
+                    log.error("Error encoding image for fallback: {}", state.getImagePath().get(), e);
+                    response = "[Agente Supervisor] Error al procesar la imagen para fallback.";
+                }
+            } else {
+                response = generateFallbackResponse(userInput);
+            }
+            state.setAgentResponse(response);
+            return state.data();
+        };
+
+        // Define Graph
+        agentGraph = new StateGraph<>(HealthiaAgentState.SCHEMA, HealthiaAgentState::new)
+                .addNode(DETERMINE_AGENT_NODE, determineAgentAction)
+                .addNode(NUTRITION_AGENT_NODE, nutritionAgentAction)
+                .addNode(EXERCISE_AGENT_NODE, exerciseAgentAction)
+                .addNode(MEDICAL_AGENT_NODE, medicalAgentAction)
+                .addNode(FALLBACK_NODE, fallbackAction)
+                .addEdge(START, DETERMINE_AGENT_NODE)
+                .addConditionalEdges(
+                        DETERMINE_AGENT_NODE,
+                        state -> {
+                            String selectedAgent = state.getSelectedAgentName().orElse("ninguno");
+                            switch (selectedAgent) {
+                                case "nutricion":
+                                    return NUTRITION_AGENT_NODE;
+                                case "ejercicio":
+                                    return EXERCISE_AGENT_NODE;
+                                case "medico":
+                                    return MEDICAL_AGENT_NODE;
+                                default:
+                                    return FALLBACK_NODE;
+                            }
+                        },
+                        Map.of(
+                                NUTRITION_AGENT_NODE, NUTRITION_AGENT_NODE,
+                                EXERCISE_AGENT_NODE, EXERCISE_AGENT_NODE,
+                                MEDICAL_AGENT_NODE, MEDICAL_AGENT_NODE,
+                                FALLBACK_NODE, FALLBACK_NODE
+                        )
+                )
+                .addEdge(NUTRITION_AGENT_NODE, END)
+                .addEdge(EXERCISE_AGENT_NODE, END)
+                .addEdge(MEDICAL_AGENT_NODE, END)
+                .addEdge(FALLBACK_NODE, END)
+                .compile();
+
+        log.info("Agent graph initialized.");
     }
 
     public void registerAgent(String agentName, SpecializedAgent agentInstance) {
@@ -110,13 +321,9 @@ public class SupervisorService {
     }
 
     public String processRequest(String userInput, Path imagePath) {
-        log.info("Supervisor processing request. Input: '{}', ImagePath: {}", userInput, imagePath);
+        log.info("Supervisor processing request with LangGraph. Input: '{}', ImagePath: {}", userInput, imagePath);
 
-        if (imagePath != null) {
-            return processImage(imagePath, userInput);
-        }
-
-        // Handle /datos command (Simplified parsing)
+        // Handle /datos command (Simplified parsing) - remains outside graph for now
         if (userInput.startsWith("/datos")) {
             try {
                 Map<String, String> updates = parseDatosCommand(userInput);
@@ -128,28 +335,23 @@ public class SupervisorService {
             }
         }
 
-        // Check if it's a personal medical query
-        if (isPersonalMedicalQuery(userInput)) {
-            log.info("Query identified as personal medical. Routing to MedicalAgent.");
-            SpecializedAgent medical = agents.get("medico");
-            if (medical != null) {
-                String mdEnhancedInput = userInput + "\n\n" + markdownInstruction;
-                // Pass the current UserData object
-                return "[Agente de Médico] " + medical.processWithUserData(mdEnhancedInput, currentUserData);
+        HealthiaAgentState initialState = new HealthiaAgentState()
+                .setUserInput(userInput)
+                .setImagePath(imagePath)
+                .setUserData(currentUserData); // Pass current user data
+
+        try {
+            // Stream the graph execution
+            // For a single final response, we can collect the last state
+            List<HealthiaAgentState> resultStates = agentGraph.stream(initialState).collect(Collectors.toList());
+            if (!resultStates.isEmpty()) {
+                HealthiaAgentState finalState = resultStates.get(resultStates.size() -1 );
+                return finalState.getAgentResponse().orElse("[Agente Supervisor] No se pudo obtener respuesta del agente.");
             }
-        }
-
-        // General agent selection
-        String selectedAgentName = selectAgentForText(userInput);
-        log.info("Selected agent for text query: {}", selectedAgentName);
-
-        if (agents.containsKey(selectedAgentName)) {
-            SpecializedAgent selectedAgent = agents.get(selectedAgentName);
-            String mdEnhancedInput = userInput + "\n\n" + markdownInstruction;
-            String response = selectedAgent.processWithUserData(mdEnhancedInput, currentUserData);
-            return String.format("[Agente de %s] %s", capitalize(selectedAgentName), response);
-        } else {
-            // Fallback response
+            return "[Agente Supervisor] El grafo de agentes no produjo un resultado.";
+        } catch (Exception e) {
+            log.error("Error processing request with agent graph: {}", e.getMessage(), e);
+            // Fallback response in case of graph execution error
             return generateFallbackResponse(userInput);
         }
     }
@@ -463,5 +665,19 @@ public class SupervisorService {
         String process(String input);
         String processWithUserData(String input, UserData userData);
         String processImage(Path imagePath, String prompt, UserData userData);
+        // Added to allow Supervisor to fetch comprehensive user data including medical history
+        UserData getComprehensiveUserData(String userId, UserData basicSupervisorData);
+    }
+
+    // Helper method to safely get conversationId if UserData schema changes or field is missing
+    private Integer safeGetConversationId(UserData userData) {
+        try {
+            // Assuming UserData has a getConversationId method that returns Integer
+            // If it might not exist, add more checks or use reflection if necessary
+            return userData.getConversationId(); 
+        } catch (Exception e) {
+            log.warn("Could not retrieve conversationId from UserData: {}", e.getMessage());
+            return null;
+        }
     }
 } 

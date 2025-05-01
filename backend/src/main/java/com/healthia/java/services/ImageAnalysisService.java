@@ -36,10 +36,10 @@ import java.util.stream.Collectors;
 public class ImageAnalysisService {
 
     private static final Logger log = LoggerFactory.getLogger(ImageAnalysisService.class);
-    private static final String PLATES_S3_FOLDER = "platos_ia"; // Define S3 folder for plates
+    private static final String PLATES_BLOB_FOLDER = "platos_ia"; // Define Blob folder for plates
 
     private final OpenAIClient openAIClient;
-    private final S3Service s3Service;
+    private final BlobStorageService blobStorageService;
     private final ObjectMapper objectMapper;
 
     @Value("${app.openai.model}")
@@ -57,9 +57,9 @@ public class ImageAnalysisService {
     private final AtomicInteger nextId = new AtomicInteger(1);
 
     @Autowired
-    public ImageAnalysisService(OpenAIClient openAIClient, S3Service s3Service) {
+    public ImageAnalysisService(OpenAIClient openAIClient, BlobStorageService blobStorageService) {
         this.openAIClient = openAIClient;
-        this.s3Service = s3Service;
+        this.blobStorageService = blobStorageService;
         // Configure ObjectMapper for Java Time API
         this.objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
@@ -122,8 +122,8 @@ public class ImageAnalysisService {
             BufferedImage originalImage = validateAndReadImage(imageData);
             ImageDimensions dimensions = new ImageDimensions(originalImage.getWidth(), originalImage.getHeight());
 
-            // 1. Upload original image to S3
-            originalImageUrl = uploadToS3(imageData, fileExtension, currentAnalysisId, originalFilename, "original");
+            // 1. Upload original image to Blob Storage
+            originalImageUrl = uploadToBlob(imageData, fileExtension, currentAnalysisId, originalFilename, "original");
 
             // 2. Call OpenAI Vision API
             String openAIResponseJson = callOpenAIVision(imageData, fileExtension, dimensions);
@@ -135,8 +135,8 @@ public class ImageAnalysisService {
             // 4. Draw analysis on image
             byte[] processedImageData = drawAnalysisOnImage(imageData, analysisResult, dimensions);
 
-            // 5. Upload processed image to S3
-            processedImageUrl = uploadToS3(processedImageData, "jpg", currentAnalysisId, originalFilename, "processed");
+            // 5. Upload processed image to Blob Storage
+            processedImageUrl = uploadToBlob(processedImageData, "jpg", currentAnalysisId, originalFilename, "processed");
             analysisResult.setImagenProcesadaUrl(processedImageUrl);
 
             // 6. Store result
@@ -156,8 +156,8 @@ public class ImageAnalysisService {
 
         } catch (Exception e) {
             log.error("Image analysis failed for ID {}: {}", currentAnalysisId, e.getMessage(), e);
-            // Attempt to clean up S3 resources if urls were generated
-            cleanupS3OnError(originalImageUrl, processedImageUrl);
+            // Attempt to clean up Blob Storage resources if urls were generated
+            cleanupBlobOnError(originalImageUrl, processedImageUrl);
             // Remove potentially incomplete entry from memory if added
             analyses.remove(currentAnalysisId);
             // Re-throw a more specific exception or handle as needed
@@ -233,18 +233,18 @@ public class ImageAnalysisService {
             log.info("Removed analysis ID {} from memory.", analysisId);
             saveAnalysesToJson(); // Persist removal
 
-            // Delete S3 folder associated with the analysis
-            String s3FolderPath = String.format("%s/%d", PLATES_S3_FOLDER, analysisId);
+            // Delete Blob Storage folder associated with the analysis
+            String blobFolderPath = String.format("%s/%d", PLATES_BLOB_FOLDER, analysisId);
             try {
-                 Map<String, Object> deleteResult = s3Service.deleteFolderFromS3(s3FolderPath);
+                 Map<String, Object> deleteResult = blobStorageService.deleteFolderFromBlob(blobFolderPath);
                  if (Boolean.TRUE.equals(deleteResult.get("success"))) {
-                     log.info("Successfully deleted S3 folder: {}", s3FolderPath);
+                     log.info("Successfully deleted Blob folder: {}", blobFolderPath);
                  } else {
-                      log.warn("Failed to delete S3 folder '{}': {}", s3FolderPath, deleteResult.get("error"));
-                      // Continue deletion of analysis record even if S3 cleanup fails partially
+                      log.warn("Failed to delete Blob folder '{}': {}", blobFolderPath, deleteResult.get("error"));
+                      // Continue deletion of analysis record even if Blob cleanup fails partially
                  }
             } catch (Exception e) {
-                 log.error("Error deleting S3 folder '{}' for analysis ID {}: {}", s3FolderPath, analysisId, e.getMessage(), e);
+                 log.error("Error deleting Blob folder '{}' for analysis ID {}: {}", blobFolderPath, analysisId, e.getMessage(), e);
                  // Continue deletion of analysis record
             }
             return true;
@@ -348,25 +348,25 @@ public class ImageAnalysisService {
         }
     }
 
-    private String uploadToS3(byte[] data, String extension, int analysisId, String originalFilename, String type) {
+    private String uploadToBlob(byte[] data, String extension, int analysisId, String originalFilename, String type) {
         String filename = String.format("%s_%s.%s",
                 type,
                 (originalFilename != null ? Paths.get(originalFilename).getFileName().toString().replaceFirst("[.][^.]+$", "") : "image"),
                 extension);
 
-        Map<String, Object> s3Result = s3Service.uploadFileToS3(
+        Map<String, Object> blobResult = blobStorageService.uploadFileToBlob(
                 new ByteArrayInputStream(data),
                 data.length,
                 extension,
                 analysisId,
                 filename, // Use constructed filename
-                PLATES_S3_FOLDER // Specific folder for plates
+                PLATES_BLOB_FOLDER // Specific folder for plates
         );
 
-        if (Boolean.TRUE.equals(s3Result.get("success"))) {
-            return (String) s3Result.get("url");
+        if (Boolean.TRUE.equals(blobResult.get("success"))) {
+            return (String) blobResult.get("url");
         } else {
-            throw new RuntimeException("Failed to upload " + type + " image to S3: " + s3Result.get("error"));
+            throw new RuntimeException("Failed to upload " + type + " image to Blob Storage: " + blobResult.get("error"));
         }
     }
 
@@ -701,21 +701,21 @@ public class ImageAnalysisService {
              dimensions.getWidth() - 1, dimensions.getHeight() - 1, dimensions.getWidth() - 1, dimensions.getHeight() - 1);
     }
 
-    private void cleanupS3OnError(String originalUrl, String processedUrl) {
+    private void cleanupBlobOnError(String originalUrl, String processedUrl) {
         if (originalUrl != null) {
             try {
-                log.warn("Cleaning up original S3 image due to error: {}", originalUrl);
-                s3Service.deleteFileFromS3(originalUrl);
+                log.warn("Cleaning up original Blob image due to error: {}", originalUrl);
+                blobStorageService.deleteFileFromBlob(originalUrl);
             } catch (Exception e) {
-                log.error("Failed to cleanup original S3 image '{}': {}", originalUrl, e.getMessage());
+                log.error("Failed to cleanup original Blob image '{}': {}", originalUrl, e.getMessage());
             }
         }
          if (processedUrl != null) {
             try {
-                log.warn("Cleaning up processed S3 image due to error: {}", processedUrl);
-                s3Service.deleteFileFromS3(processedUrl);
+                log.warn("Cleaning up processed Blob image due to error: {}", processedUrl);
+                blobStorageService.deleteFileFromBlob(processedUrl);
             } catch (Exception e) {
-                log.error("Failed to cleanup processed S3 image '{}': {}", processedUrl, e.getMessage());
+                log.error("Failed to cleanup processed Blob image '{}': {}", processedUrl, e.getMessage());
             }
         }
         // Also consider deleting the folder if an ID was reserved but analysis failed completely

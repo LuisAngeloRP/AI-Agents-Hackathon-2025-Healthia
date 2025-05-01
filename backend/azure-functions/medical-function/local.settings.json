@@ -1,0 +1,21 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "YOUR_AZURE_STORAGE_CONNECTION_STRING", 
+    "FUNCTIONS_WORKER_RUNTIME": "java",
+    "MAIN_CLASS": "com.healthia.functions.MedicalFunction", 
+    "AzureWebJobsDashboard": "",
+    "OpenAI.ApiKey": "YOUR_OPENAI_API_KEY",
+    "OpenAI.Model": "gpt-4o", 
+    "spring.datasource.url": "jdbc:mysql://YOUR_MYSQL_SERVER_NAME.mysql.database.azure.com:3306/healthia_db?useSSL=true&requireSSL=false",
+    "spring.datasource.username": "YOUR_MYSQL_USERNAME",
+    "spring.datasource.password": "YOUR_MYSQL_PASSWORD",
+    "spring.jpa.hibernate.ddl-auto": "update",
+    "spring.jpa.show-sql": "true",
+    "app.openai.prompt.medical_general": "Eres un asistente médico AI. Proporciona información basada en el siguiente texto: {inputText}",
+    "app.openai.prompt.medical_with_data": "Eres un asistente médico AI. Considerando los datos del usuario: {userDataSummary}. Proporciona información sobre: {inputText}",
+    "app.openai.prompt.medical_image_with_data": "Eres un asistente médico AI. Analiza la siguiente imagen en el contexto de los datos del usuario: {userDataSummary}. El usuario pregunta: {userPrompt}",
+    "AZURE_STORAGE_CONNECTION_STRING_FOR_MEDICAL_IMAGES": "YOUR_AZURE_STORAGE_CONNECTION_STRING_FOR_IMAGES_IF_NEEDED_SEPARATELY",
+    "AZURE_STORAGE_BLOB_CONTAINER_NAME_FOR_MEDICAL_IMAGES": "healthia-medical-images"
+  }
+} 
