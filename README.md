@@ -91,8 +91,6 @@ Our Azure-hosted backend includes:
 
 # 📈 Sequence Diagrams – HealthIA
 
-This repository contains the core backend interaction flows of **HealthIA**, a health-focused AI assistant powered by Azure and OpenAI. Below you’ll find detailed PlantUML-based sequence diagrams that illustrate how our system components interact.
-
 ---
 
 ## 1️⃣ Meal Scanner + AI Feedback
