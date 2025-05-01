@@ -183,22 +183,6 @@ Visit 👉 [www.sergioyupanqui.com](https://sergioyupanqui.com)
 </table>
 
 
-<p align="left">
-  <a href="https://www.linkedin.com/in/fransua-leon/" target="_blank">
-    <img src="https://img.shields.io/badge/@Fransua_Leon-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Fransua Leon LinkedIn"/>
-  </a>
-  <a href="https://www.linkedin.com/in/sergioyupanquigomez/" target="_blank">
-    <img src="https://img.shields.io/badge/@Sergio_Yupanqui-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Sergio Yupanqui LinkedIn"/>
-  </a>
-  <a href="https://www.linkedin.com/in/luisangelorp/" target="_blank">
-    <img src="https://img.shields.io/badge/@Luis_Rodriguez-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Luis Rodriguez LinkedIn"/>
-  </a>
-  <a href="https://www.linkedin.com/in/andrepachecot/" target="_blank">
-    <img src="https://img.shields.io/badge/@André_Pacheco-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="André Pacheco LinkedIn"/>
-  </a>
-</p>
-
-
 
 ## 📇 Contact
 
