@@ -16,6 +16,21 @@
 
 <p align="center"><strong>👉 To try it now, visit <a href="https://sergioyupanqui.com" target="_blank">www.sergioyupanqui.com</a> from your PC or mobile and analyze your own plate instantly!</strong></p>
 
+<p align="center">
+  <a href="https://www.linkedin.com/in/fransua-leon/" target="_blank">
+    <img src="https://img.shields.io/badge/Fransua%20Leon-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="https://www.linkedin.com/in/sergioyupanquigomez/" target="_blank">
+    <img src="https://img.shields.io/badge/Sergio%20Yupanqui-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="https://www.linkedin.com/in/luisangelorp/" target="_blank">
+    <img src="https://img.shields.io/badge/Luis%20Rodriguez-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="https://www.linkedin.com/in/andrepachecot/" target="_blank">
+    <img src="https://img.shields.io/badge/André%20Pacheco-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+</p>
+
 ---
 
 ## 🚨 The Problem
@@ -140,10 +155,3 @@ This sequence outlines how HealthIA generates a personalized workout routine usi
   </a>
 </p>
 
----
-
-## 📇 Contact
-
-Built with ❤️ by Team **CevicherIA** — National University of Engineering (UNI)
-
-- 🌐 [sergioyupanqui.com](https://sergioyupanqui.com)
