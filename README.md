@@ -164,4 +164,11 @@ Built fully on **Azure Cloud**, it includes:
   <a href="https://www.linkedin.com/in/andrepachecot/" target="_blank">
     <img src="https://img.shields.io/badge/André%20Pacheco-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>
-</p>
+
+<h3>✅ Deployment Azure Snapshots</h3>
+
+<div style="text-align: center;">
+  <img src="https://github.com/user-attachments/assets/005c34e3-c4b8-46a6-96c6-c01e032b69d0" alt="Test Deploy Screenshot 1" width="600" style="margin-bottom: 20px;" />
+  <br/>
+  <img src="https://github.com/user-attachments/assets/02129b8e-24c2-4fc7-a6ac-98e0816376a6" alt="Test Deploy Screenshot 2" width="600" />
+</div>
